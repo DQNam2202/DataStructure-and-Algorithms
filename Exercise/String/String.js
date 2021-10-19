@@ -159,3 +159,77 @@
     + stringChop('w3resource',2) --> ["w3", "re", "so", "ur", "ce"]
     + stringChop('w3resource',3) --> ["w3r", "eso", "urc", "e"]
 */
+
+/** 
+  21. Viết một hàm JavaScript để tách các khoảng trắng ở đầu và cuối khỏi một chuỗi
+  Test Data :
+    + strip('w3resource ')  --> "w3resource"
+    + strip(' w3resource')  --> "w3resource"
+    + strip(' w3resource ') --> "w3resource"
+*/
+
+/** 
+  22. Viết một hàm JavaScript để chuyển đổi ASCII sang định dạng Hệ thập lục phân
+  Test Data :
+    + ascii_to_hexa('12')   --> "3132"
+    + ascii_to_hexa('100')  --> "313030"
+*/
+
+/** 
+  23. Viết một hàm JavaScript để chuyển đổi hệ thập lục phân sang định dạng ASCII
+  Test Data :
+    + hex_to_ascii('3132')    --> "12"
+    + hex_to_ascii('313030')  --> "100"
+*/
+
+/** 
+  24. Viết một hàm JavaScript để tìm một từ trong một chuỗi
+  Test Data :
+    + search_word('The quick brown fox', 'fox') --> "'fox' was found 1 times."
+    + search_word('aa, bb, cc, dd, aa', 'aa')   --> "'aa' was found 2 times."
+*/
+
+/** 
+  25. Viết một hàm JavaScript để xóa các ký tự ASCII? 
+  Test Data :
+    + remove_non_ascii('???????PHP-MySQL??????') --> "PHP-MySQL"
+*/
+
+/**
+  26. Viết một hàm JavaScript để chuyển đổi một chuỗi thành chữ hoa tiêu đề.
+  Test Data :
+    + sentenceCase('PHP exercises. python exercises.') --> "Php Exercises. Python Exercises."
+*/
+
+/** 
+  27. Viết một hàm JavaScript để kiểm tra so sánh chuỗi không phân biệt chữ hoa chữ thường (ngoại trừ các ký tự Unicode đặc biệt).
+  Test Data :
+    + compare_strings('abcd', 'AbcD') --> true;
+    + compare_strings('ABCD', 'Abce') --> false;
+*/
+
+/**
+  28. Viết một hàm JavaScript để Uncapitalize? ký tự đầu tiên của một chuỗi.
+  Test Data :
+    + Uncapitalize('Js string exercises') --> "js string exercises"
+*/
+
+/** 
+  29. Viết hàm JavaScript để tạo tìm kiếm không phân biệt chữ hoa chữ thường
+  Test Data :
+    + case_insensitive_search('JavaScript Exercises', 'exercises') --> "Matched"
+    + case_insensitive_search('JavaScript Exercises', 'Exercises') --> "Matched"
+    + case_insensitive_search('JavaScript Exercises', 'Exercisess') --> "Not Matched"
+*/
+
+/** 
+  30. Viết một hàm JavaScript để kiểm tra xem ký tự tại chỉ mục (ký tự) được cung cấp có phải là chữ hoa hay không.
+  Test Data :
+    + isUpperCaseAt('Js STRING EXERCISES', 1)  -->  false
+*/
+
+/** 
+  31. Viết một hàm JavaScript để kiểm tra xem ký tự tại chỉ mục (ký tự) được cung cấp có phải là chữ thường hay không ?
+  Test Data :
+    + isLowerCaseAt ('Js STRING EXERCISES', 1)  --> true
+*/
