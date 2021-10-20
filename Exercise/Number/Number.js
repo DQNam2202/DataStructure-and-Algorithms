@@ -3,7 +3,15 @@
   1.2 Viết function tính chu vi hình chữ nhật function perimeterOfRectangle()
   1.3 Viết function tính diện tích hình tròn function circle()
  */
-
+// 1.1
+const rectangle = (width, height) => {
+  if (width <= 0 || height <= 0) return "";
+  return width * height;
+};
+// 1.2
+const perimeterOfRectangel = (width, height) => (width + height) * 2;
+// 1.3
+const theAreaOfcircle = (radius) => (radius ** 2 * Math.PI).toFixed(2);
 /**
   2.1 Viết function kiểm tra số chẵn hay số lẻ function Odd/Even()
   2.2 Viết function kiểm tra số chia hết cho 5 function divisible()
@@ -11,19 +19,92 @@
   2.4 Viết function kiểm tra số nguyên tố function isPrime()
   2.5 Viết function kiểm tra số hoàn thiện function isPerfectNumb()
 */
-
+// 2.1
+const OddNumber = (numb) => {
+  if (numb < 0 && numb !== "Number") return -1;
+  return numb % 2 === 0 ? false : true;
+};
+// EvenNumber
+const evenNumber = (numb) => {
+  if (numb < 0 && numb !== "Number") return -1;
+  return numb % 2 === 0 ? true : false;
+};
+// 2.2
+const divisible = (numb) => {
+  if (numb < 0 && numb !== "Number") return -1;
+  return numb % 5 === 0 ? true : false;
+};
+// 2.3
+const perfectSquare = (numb) => {
+  if (numb < 0 && numb !== "Number") return -1;
+  return numb === Math.sqrt(numb) ** 2 ? true : false;
+};
+// 2.4
+const isPrimeNumber = (numb) => {
+  if (numb < 0 && numb !== "Number") return -1;
+  if (numb < 2) return false;
+  for (let i = 2; i < Math.sqrt(numb); i++) {
+    if (numb % i === 0) return false;
+  }
+  return true;
+};
+// 2.5
+const isPerfectNumb = (numb) => {
+  let result = 0;
+  if (numb < 1 && numb !== "Number") return -1;
+  for (let i = 1; i < numb; i++) {
+    if (numb % i === 0) {
+      result += i;
+    }
+  }
+  return numb === result ? true : false;
+};
 /**
   3.1 Viết function chuyển đổi giờ sang giây, function convertHourToSeconds()
   3.2 Cho 3 chữ số tìm Max, function max(a,b,c)
   3.3 Cho 3 chữ số tìm Max là số chẵn, function maxEven(a,b,c)
 */
-
+// 3.1
+const convertHourToSeconds = (hour) => hour * 3600;
+// 3.2
+const findMaxOfThreeNumb = (a, b, c) => {
+  let max = a;
+  if (b > max) max = b;
+  if (c > max) max = c;
+  return max;
+};
+// 3.3
+const findMaxEvenNumb = (a, b, c) => {
+  let max = Number.NEGATIVE_INFINITY;
+  if (a > max && evenNumber(a)) max = a;
+  if (b > max && evenNumber(b)) max = b;
+  if (c > max && evenNumber(c)) max = c;
+  return max;
+};
 /**
   4.1 Rút trích chữ số ở hàng đơn vị của một số có 3 chữ Số, function extractTheOnes()
   4.2 Rút trích chữ số ở hàng chục của một số có 3 chữ Số, function extractTheTens()
   4.3 Rút trích chữ số ở hàng trăm vị của một số có 3 chữ Số, function extractTheHundres()
   4.4 Tính tổng các chữ số của một số có 3 chữ Số, function sumAllDigits()
 */
+// 4.1
+const extractTheOnes = (numb) => {
+  return numb % 10;
+};
+// 4.2
+const extractTheTens = (numb) => {
+  return Math.trunc(numb / 10) % 10;
+};
+//4.3
+const extractTheHundres = (numb) => {
+  return Math.trunc(numb / 100);
+};
+const sumAllDigits = (numb) => {
+  const ones = numb % 10;
+  const tens = Math.trunc(numb / 10) % 10;
+  const hundered = Math.trunc(numb / 100);
+  return ones + tens + hundered;
+};
 
 /**
   5. Bài toán gọi taxi
