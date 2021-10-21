@@ -112,8 +112,16 @@ const sumAllDigits = (numb) => {
   Yêu cầu:
     + Khi chỉ số khách lớn hơn 4, ưu tiên dùng xe 7 chỗ
     + Nếu số khách nhỏ hơn hoặc bằng 4 dùng xe 4 chỗ
+  Example:
+    + getTaxiCount(3)  -->  1 xe 4 chỗ
+    + getTaxiCount(6)  -->  1 xe 7 chỗ
+    + getTaxiCount(10)  --> 2 xe vì 1 xe 7 và 1 xe 4
+    + getTaxiCount(20)  --> 3 xe 7 chỗ
 */
-
+const getTaxiCount = (passagersCount) => {
+  if (passagersCount <= 4) return 1;
+  if (passagersCount > 4) return Math.ceil(passagersCount / 7);
+};
 /**
   6. Tìm chữ số lớn nhất của một số nguyên dương
     Viết hàm function getMaxDigit(n) {} để tìm ra chữ số lớn nhất của một số nguyên dương n (0 <= n < 1000)
@@ -121,7 +129,22 @@ const sumAllDigits = (numb) => {
     + getMaxDigit(1) --> 1
     + getMaxDigit(2) --> 2
  */
-
+const getMaxDigit = (numb) => {
+  if (numb < 0 || numb >= 1000) return -1;
+  const ones = numb % 10;
+  const tens = Math.trunc(numb / 10) % 10;
+  const hundred = Math.trunc(numb / 100);
+  let max = ones;
+  if (tens > max) max = tens;
+  if (hundred > max) max = hundred;
+  return max;
+};
+// * Sử dụng chuỗi để giải quyết
+const getMaxDigitVer02 = (numb) => {
+  // ! Convert Number to String
+  let newNumb = numb + "";
+  return Number(Math.max(...newNumb.split("")));
+};
 /**
   7. So sánh 2 số nguyên
     Viết hàm compareNumbers(a, b) nhận vào 2 số nguyên bất kỳ:
@@ -130,7 +153,11 @@ const sumAllDigits = (numb) => {
     + 0 nếu a = b
     + -1 nếu a < b
 */
-
+const compareNumbers = (a, b) => {
+  if (a === b) return 0;
+  if (a > b) return 1;
+  if (a < b) return -1;
+};
 /**
   8. Kiểm tra tối đa có 3 chữ số đối xứng hay không ?
     Viết hàm isSymmetricNumber(n) để nhận vào số nguyên dương n có tối đa 3 chữ số và trả về true nếu n là số đối xứng ngược lại trả về false
@@ -138,7 +165,30 @@ const sumAllDigits = (numb) => {
     + Tham số n truyền vào luôn luôn là số có tối đa 3 chữ số (0 --> 999)
     + Số đối xứng là số mà đọc từ trái sang phải nó giống như đọc từ phải sang trái.
 */
-
+// ! Sử dụng chuỗi để giải quyết số có 3 chữ số
+const isSymmetricNumberVer01 = (numb) => {
+  if (numb < 0 || numb >= 1000) return -1;
+  const str = numb + "";
+  return str[0] === str[str.length - 1] ? true : false;
+};
+// ! Sử dụng mảng để giải quyết số có 3 chữ số
+const isSymmetricNumberVer02 = (numb) => {
+  if (numb < 0 || numb >= 1000) return -1;
+  let arrNumb = numb.toString().trim().split("");
+  return arrNumb[0] === arrNumb[arrNumb.length - 1] ? true : false;
+};
+// ! Sử dụng number để giải quyết cho mọi loại số đối xứng
+const isSymmetricNumberVer03 = (n) => {
+  if (n < 0 || n > 1000) return -1;
+  var soNghichDao = 0;
+  var number = n;
+  while (number > 0) {
+    var sc = number % 10;
+    soNghichDao = soNghichDao * 10 + sc;
+    number = Math.floor(number / 10);
+  }
+  return soNghichDao === n ? true : false;
+};
 /**
   9. Viết một hàm JavaScript để chuyển đổi một số từ cơ sở này sang cơ sở khác
   Lưu ý: Cơ số phải nằm trong khoảng tử 20 đến 36
@@ -146,14 +196,23 @@ const sumAllDigits = (numb) => {
     + base_convert('E164',16,8)  --> "160544"
     + base_convert(1000,2,8)     --> "10"
 */
-
+// ! Chuyển một số sang hệ nào đó sử dụng parseInt(number, radix)
+const baseConvert = (number, intitalBase, changeBase) => {
+  if ((intitalBase && changeBase) < 2 || (intitalBase && changeBase) > 36)
+    return `Base between 2 to 36`;
+  return parseInt(number.toString(), intitalBase).toString(changeBase);
+};
 /**
   10. Viết một hàm JavaScript để chuyển một số nhị phân thành một số thập phân.
   Test Data :
     + bin_to_dec('110011')  --> 51
     + bin_to_dec('100')     --> 4
 */
-
+const convertBinToDec = (numb) => {
+  const BIN = 2;
+  const DEC = 10;
+  return parseInt(numb.toString(), BIN).toString(DEC);
+};
 /**
   11. Viết một hàm JavaScript để chuyển đổi một số thập phân thành số nhị phân, thập lục phân hoặc bát phân.
   Test Data :
@@ -170,11 +229,29 @@ const sumAllDigits = (numb) => {
     + rand(6)     --> 1
     + rand()      --> 0
 */
-
+const random = (min, max) => {
+  if (min == null || max == null) return 0;
+  if (max == null) {
+    min = max;
+    max = 0;
+  }
+  return min + Math.floor(Math.random() * (max - min + 1));
+};
+console.log(random(20, 1));
 /**
   13. Tìm giá trị max và giá trị min có trong mảng
 */
-
+const findMinToArr = (arr) => {
+  if (typeof arr !== "object") return -1;
+  let min = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+  }
+  return min;
+};
+console.log(findMinToArr([1, 2, 3]));
 /**
   14. Viết một hàm JavaScript để nhận ước chung lớn nhất (gcd) của hai số nguyên
   Lưu ý: Theo Wikipedia - Trong toán học, ước chung lớn nhất (gcd) của hai hoặc nhiều số nguyên:
