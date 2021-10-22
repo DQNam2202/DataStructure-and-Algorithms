@@ -21,27 +21,27 @@ const theAreaOfcircle = (radius) => (radius ** 2 * Math.PI).toFixed(2);
 */
 // 2.1
 const OddNumber = (numb) => {
-  if (numb < 0 && numb !== "Number") return -1;
+  if (numb < 0 || numb !== "Number") return -1;
   return numb % 2 === 0 ? false : true;
 };
 // EvenNumber
 const evenNumber = (numb) => {
-  if (numb < 0 && numb !== "Number") return -1;
+  if (numb < 0 || typeof numb !== "Number") return -1;
   return numb % 2 === 0 ? true : false;
 };
 // 2.2
 const divisible = (numb) => {
-  if (numb < 0 && numb !== "Number") return -1;
+  if (numb < 0 || typeof numb !== "Number") return -1;
   return numb % 5 === 0 ? true : false;
 };
 // 2.3
 const perfectSquare = (numb) => {
-  if (numb < 0 && numb !== "Number") return -1;
+  if (numb < 0 || typeof numb !== "Number") return -1;
   return numb === Math.sqrt(numb) ** 2 ? true : false;
 };
 // 2.4
 const isPrimeNumber = (numb) => {
-  if (numb < 0 && numb !== "Number") return -1;
+  if (numb < 0 || typeof numb !== "Number") return -1;
   if (numb < 2) return false;
   for (let i = 2; i < Math.sqrt(numb); i++) {
     if (numb % i === 0) return false;
@@ -51,7 +51,7 @@ const isPrimeNumber = (numb) => {
 // 2.5
 const isPerfectNumb = (numb) => {
   let result = 0;
-  if (numb < 1 && numb !== "Number") return -1;
+  if (numb < 1 || typeof numb !== "Number") return -1;
   for (let i = 1; i < numb; i++) {
     if (numb % i === 0) {
       result += i;
@@ -220,7 +220,31 @@ const convertBinToDec = (numb) => {
     + dec_to_bho(120,'H')  --> "78"
     + dec_to_bho(120,'O')  --> "170"
 */
-
+const decToBHO = (numb, base) => {
+  const DEC = 10;
+  const BIN = 2;
+  const HEC = 16;
+  const OCT = 8;
+  if (numb < 0) {
+    numb = 0xffffffff + n + 1;
+  }
+  switch (base) {
+    case "B": {
+      return +parseInt(numb.toString(), DEC).toString(BIN);
+      break;
+    }
+    case "H": {
+      return +parseInt(numb.toString(), DEC).toString(HEC);
+      break;
+    }
+    case "O": {
+      return +parseInt(numb.toString(), DEC).toString(OCT);
+      break;
+    }
+    default:
+      return `Error....`;
+  }
+};
 /**
   12.Viết một hàm JavaScript để tạo một số nguyên ngẫu nhiên
   Test Data :
@@ -237,7 +261,6 @@ const random = (min, max) => {
   }
   return min + Math.floor(Math.random() * (max - min + 1));
 };
-console.log(random(20, 1));
 /**
   13. Tìm giá trị max và giá trị min có trong mảng
 */
@@ -251,7 +274,6 @@ const findMinToArr = (arr) => {
   }
   return min;
 };
-console.log(findMinToArr([1, 2, 3]));
 /**
   14. Viết một hàm JavaScript để nhận ước chung lớn nhất (gcd) của hai số nguyên
   Lưu ý: Theo Wikipedia - Trong toán học, ước chung lớn nhất (gcd) của hai hoặc nhiều số nguyên:
@@ -261,8 +283,24 @@ console.log(findMinToArr([1, 2, 3]));
   Test Data :
     + gcd_two_numbers(12, 13) --> 1
     + gcd_two_numbers(9, 3) --> 3
+  Mô tả:
+    +  (8,36)
+    +  (36,4)
+    +  (4,4)
+    +  0 => return 4
 */
-
+const gcdTwoNumber = (a, b) => {
+  // ! Không được là số âm và không phải là số
+  if (typeof a !== "number" || typeof b !== "number") return false;
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y) {
+    let t = y;
+    y = y % x;
+    x = t;
+  }
+  return x;
+};
 /**
   15. Viết một hàm JavaScript để kiểm tra xem một số có phải là lũy thừa của 2 hay không
   Test Data :
@@ -270,7 +308,14 @@ console.log(findMinToArr([1, 2, 3]));
     + power_of_2(18)  --> false
     + power_of_2(256) --> true
 */
-
+const powerOfTwo = (numb) => {
+  if (typeof numb !== "number" || numb < 0) return -1;
+  return Math.sqrt(numb) % 2 === 0 ? true : false;
+};
+// Version 02:
+const powerOfTwoVer02 = (number) => {
+  return number % Math.sqrt(number) === 0;
+};
 /**
   16. Viết một hàm JavaScript để làm tròn một số đến các chữ số thập phân cho trước.
   Test Data :
@@ -279,7 +324,9 @@ console.log(findMinToArr([1, 2, 3]));
     + precise_round(10.49999,0)     --> 10
     + precise_round(10.49999,2)     --> 10.50
 */
-
+const preciseRound = (number, radix) => {
+  return +number.toFixed(radix);
+};
 /**
   17. Viết một hàm JavaScript để kiểm tra xem một biến có phải là số hay không
   Test Data :
@@ -290,6 +337,9 @@ console.log(findMinToArr([1, 2, 3]));
     + isNumeric(1.20)   --> true
     + isNumeric(-200)   --> true
 */
+const isNumberic = (number) => {
+  return typeof number === "number" ? true : false;
+};
 
 /**
   18. Viết một hàm Javascript tính tổng các giá trị có trong một mảng
@@ -298,7 +348,13 @@ console.log(findMinToArr([1, 2, 3]));
     + sum([100,-200,3])   --> -97
     + sum([1,2,'a',3])    --> 6
 */
-
+const sumArr = (arr) => {
+  if (typeof arr !== "object") return -1;
+  let arrFilter = [...arr].filter((item) => typeof item === "number");
+  return [...arrFilter].reduce((sum, item) => {
+    return (sum += item);
+  }, 0);
+};
 /**
   19. Viết một hàm JavaScript để tính tích các giá trị trong một mảng.
   Test Data :
@@ -306,7 +362,13 @@ console.log(findMinToArr([1, 2, 3]));
     + product([100,-200,3])   --> -6000
     + product([1,2,'a',3])    --> 6
 */
-
+const productArr = (arr) => {
+  if (typeof arr !== "object") return -1;
+  let arrFilter = [...arr].filter((item) => typeof item === "number");
+  return [...arrFilter].reduce((sum, item) => {
+    return (sum *= item);
+  }, 1);
+};
 /**
   20.Tạo một hàm Pitago trong Javascript
   Lưu ý: Định lý Pitago cho chúng ta biết mối quan hệ trong mọi tam giác vuông là: c^2 = a^2 + b62, trong đó c là cạnh huyền và a, b là hai chân của tam giác
@@ -314,33 +376,60 @@ console.log(findMinToArr([1, 2, 3]));
     + pythagorean_theorem(2, 4) --> 4.47213595499958
     + pythagorean_theorem(3, 4) --> 5
 */
-
+const pythagoreanTheorem = (a, b) => {
+  if (typeof a !== "number" || typeof b !== "number") return -1;
+  return Math.sqrt(a ** 2 + b ** 2);
+};
 /**
   21. Viết một hàm JavaScript để tính căn thứ n của một số.
   Test Data :
     + nthroot(64, 2)  --> 8
     + nthroot(64, -2) --> 0.125
 */
-
+const nthRoot = (number, n) => {
+  if (typeof number !== "number" || typeof n !== "number") return -1;
+  return n > 0 ? Math.sqrt(number) : number ** (1 / n);
+};
 /**
   22. Viết một hàm JavaScript để chuyển một số dương thành số âm.
   Test Data :
     + pos_to_neg(15) --> -15
 */
-
+const posToNeg = (number) =>
+  typeof number !== "number" ? `Erorr...` : (number *= -1);
 /**
   23. Viết một hàm JavaScript để lấy số cao nhất từ ​​ba số khác nhau.
   Test Data :
     + highestOfThree(-5, 4, 2)  --> 4
 */
-
+const highestOfThree = (a, b, c) => {
+  if (typeof a !== "number" || typeof b !== "number" || typeof c !== "number")
+    return -1;
+  let max = a;
+  if (b > max) max = b;
+  if (c > max) max = c;
+  return max;
+};
 /**
   24. Viết một hàm JavaScript để đếm các chữ số của một số nguyên.
 */
-
+const countNumb = (numb) => {
+  if (typeof numb !== "number" || numb < 0) return -1;
+  let arrNumb = numb + "".split("");
+  return arrNumb.length;
+};
 /**
   25. Viết một hàm JavaScript để nhận tất cả các số nguyên tố từ 0 đến một số được chỉ định.
   Test Data :
     + primeFactorsTo(5)   --> [2, 3, 5]
     + primeFactorsTo(15)  --> [2, 3, 5, 7, 11, 13]
 */
+const primeFactorsTo = (number) => {
+  let arr = [];
+  for (let i = 2; i <= number; i++) {
+    if (isPrimeNumber(i)) {
+      arr.push(i);
+    }
+  }
+  return arr;
+};
