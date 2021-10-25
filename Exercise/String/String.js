@@ -1,25 +1,88 @@
 /**
   1. Viết function in hoa ký tự đầu tiên của chuỗi, tất cả ký tự còn lại sẽ là viết thường, function capitalize()
 */
-
+const capitalize = (str) => {
+  const firstLetter = str.toLowerCase()[0].toUpperCase();
+  const res = str.toLowerCase().slice(1);
+  return `${firstLetter}${res}`;
+};
 /**
   2. Kiểm tra trong chuỗi có chứa domain '@gmail.com' hay không ? function hasEmail()
 */
-
+const hasEmail = (emailAddress) => {
+  return emailAddress.includes("@gmail.com");
+};
 /**
-  3. Biến đổi về dạng chuẩn hóa theo yêu cầu của đề bài: parameterize('hello- nam')
+  3. Biến đổi về dạng chuẩn hóa theo yêu cầu của đề bài: parameterize('hello-nam')
 */
-
+const parameterize = (str) => {
+  if (typeof str !== "string") return "";
+  return str.trim().replace(" ", "-");
+};
 /**
   4. Viết function truncate(text,maxLenght) kiểm tra chiều dài của chuỗi, nếu nó lớn hơn độ dài quy định thì, thay thế chỗ đoạn chữ thừa thành ellipsis character "..."
+    + String.fromCodePoint(8230)
+    + \u2026 ==> '...'
 */
+const truncate = (text, maxLenght) => {
+  if (typeof text !== "string" || text.length > maxLenght) {
+    return `${text.trim().slice(0, maxLenght - 1)}${String.fromCodePoint(
+      8230
+    )}`;
+  }
+  return text;
+};
 
+const truncateVer02 = (str, maxLenght) => {
+  if (typeof str !== "string" || str.length > maxLenght) {
+    return `${str.trim().slice(0, maxLenght - 1)}\u2026`;
+  }
+  return str;
+};
 /**
   5. Tìm và xóa nguyên âm trong câu văn đầu
     Viết hàm function removeVowel(str) để tìm và remove tất cả các nguyên âm có trong câu văn đầu vào
   Hint: nguyên âm là các ký tự: u,i,e,a,i
 */
-
+// version 01:
+const removeVowel = (str) => {
+  if (typeof str !== "string" || str.length === "") return null;
+  return str
+    .trim()
+    .toLowerCase()
+    .split()
+    .map((item) => {
+      return item.replace(/[uieou]/g, "");
+    })
+    .join("");
+};
+// Version 02:
+const removeVowelVer02 = (str) => {
+  if (typeof str !== "string" || str.length === "") return null;
+  return str
+    .trim()
+    .toLowerCase()
+    .replace(/[uieou]/gi, "");
+};
+// Version 03:
+const removeVowelVer03 = (str) => {
+  if (typeof str !== "string" || str.length === "") return null;
+  const vowel = {
+    a: true,
+    e: true,
+    u: true,
+    o: true,
+    i: true,
+  };
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (!vowel[str[i].toLowerCase()]) {
+      result += str[i];
+    }
+  }
+  return result;
+};
+// Version 03:
 /**
   6. Format số giây luôn hiển thị hai chữ số
   Viết hàm formatSeconds(seconds) nhận vào là số giây (0 <= seconds < 60) và trả về chuỗi luôn có hai chữ số của số giây
