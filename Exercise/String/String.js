@@ -82,17 +82,26 @@ const removeVowelVer03 = (str) => {
   }
   return result;
 };
-// Version 03:
 /**
   6. Format số giây luôn hiển thị hai chữ số
   Viết hàm formatSeconds(seconds) nhận vào là số giây (0 <= seconds < 60) và trả về chuỗi luôn có hai chữ số của số giây
   Bài này áp dụng trong thực tế khi muốn xây show đồng hồ điện tử để cho đẹp, mình đảm bảo luôn show 2 chữ số. dù số giờ phút giây có 1 chữ số.
-
   Yêu cầu:
     + Version01: sử dụng if/else
     + Version02: sử dụng slice()
 */
-
+// + Version01: sử dụng if/else
+const formatSeconds = (seconds) => {
+  return seconds < 10 ? `${0}${seconds}` : `${seconds + ""}`;
+};
+// + Version02: sử dụng slice()
+const formatSecondsVer02 = (seconds) => {
+  if (seconds < 0 || seconds > 60) return -1;
+  if (seconds < 10) {
+    return `${0}${seconds.toString().slice(0)}`;
+  }
+  return seconds + "";
+};
 /**
   6. Convert số giây sang chuỗi hh::mm::ss
   Viết hàm formatTime(seconds) nhận vào số giây seconds với (0 <= seconds < 86400)
@@ -102,15 +111,55 @@ const removeVowelVer03 = (str) => {
     + mm: là số phút
     + ss: là số giây
 */
-
+const formatTime = (seconds) => {
+  const PER_HOUR = 3600;
+  const PER_MINUTE = 60;
+  let hours = Math.floor(seconds / 3600);
+  let minute = Math.floor((seconds - hours * PER_HOUR) / PER_MINUTE);
+  seconds = seconds - hours * PER_HOUR - minute * PER_MINUTE;
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+  return `${hours}:${minute}:${seconds}`;
+};
 /**
   7.Kiểm tra URL có sử dụng phương thức bảo mật
   Viết hàm isSecureURL(url) nhận vào một là một url và trả về true nếu url có sử dụng phương thức bảo mật ngược lại và trả về false
   Quy ước URL được xem là có sử dụng phương thức bảo mật nếu bắt đầu bằng:
     + https
     + wss
+  Example:
+    isSecureURL('http://example.com') --> false vì phải bắt đầu bằng https chứ không phải http
+    isSecureURL('https://example.com') --> true
+    isSecureURL('wss://example.com') --> true
+    isSecureURL('ws://example.com') --> false
 */
+// Version 01:
+const isSecureURL = (url) => {
+  if (typeof url !== "string") return null;
+  const strUrl = url.trim().slice(0, url.trim().indexOf(":"));
+  return strUrl === "https" || strUrl === "wss" ? true : false;
+};
+// Version 02: Sử dụng indexOf
+const isSecureURLVer02 = (url) => {
+  if (typeof url !== "string") return null;
+  const strHttp = url.trim().indexOf("https");
+  const strWss = url.trim().indexOf("wss");
+  return strHttp !== -1 || strWss !== -1 ? true : false;
+};
 
+// Version 03: Sử dụng startsWith
+const isSecureURLVer03 = (url) => {
+  if (typeof url !== "string") return null;
+  return url.startsWith("https") || url.startsWith("wss") ? true : false;
+};
+console.log(isSecureURLVer03("https://www.google.com"));
 /**
   8. Rút trích domain từ địa chỉ email
     Viết hàm extractDomain(email) nhận vào địa chỉ email, trả về phần domain sau ký tự @
