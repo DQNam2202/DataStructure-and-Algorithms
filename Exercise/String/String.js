@@ -159,7 +159,6 @@ const isSecureURLVer03 = (url) => {
   if (typeof url !== "string") return null;
   return url.startsWith("https") || url.startsWith("wss") ? true : false;
 };
-console.log(isSecureURLVer03("https://www.google.com"));
 /**
   8. Rút trích domain từ địa chỉ email
     Viết hàm extractDomain(email) nhận vào địa chỉ email, trả về phần domain sau ký tự @
@@ -167,8 +166,29 @@ console.log(isSecureURLVer03("https://www.google.com"));
     + extractDomain("") --> ""
     + extractDomain("nam@gmail.com") --> "gmail.com"
     + extractDomain("bob@abc.com") --> "abc"
+  Yêu cầu:
+    + Sử dụng split
+    + Sử dụng indexOf và Slice()
 */
-
+// Sử dụng split
+const extractDomain = (email) => {
+  if (typeof email !== "string") return "";
+  return email.slice(
+    +email
+      .trim()
+      .split("")
+      .findIndex((item) => item === "@") + 1
+  );
+};
+// Sử dụng split email Version 2
+const extractDomainVer02 = (email) => {
+  return typeof email === "string" ? email.trim().split("@")[1] : "";
+};
+// Sử dụng indexOf and Slice()
+const extractDomainVer03 = (email) => {
+  const index = email.trim().indexOf("@") + 1;
+  return typeof email === "string" ? email.trim().slice(index) : "";
+};
 /**
   9. Truy tìm mật mã
     Viết hàm firstSecret(code) để truy tìm chuỗi mật mã theo quy tắc như sau.
