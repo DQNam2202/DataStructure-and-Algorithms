@@ -200,7 +200,31 @@ const extractDomainVer03 = (email) => {
     + findSecret("eaABFHsyUEYSJfrontJSKJSHend") --> "easyfrontend"
   Chú ý: được phép dùng vòng lặp for để duyệt bài trong chuỗi này
 */
-
+const firstSecretCode = (code) => {
+  if (typeof code !== "string") return "";
+  let result = "";
+  for (let i = 0; i < code.length; i++) {
+    if (code[i] === code[i].toLowerCase()) {
+      result += code[i];
+    }
+  }
+  return result;
+};
+// Version02:
+const firstSecretCodeVer02 = (code) => {
+  let result = [];
+  const arrSerectCode = code.trim().split("");
+  for (let item of arrSerectCode) {
+    if (item === item.toLowerCase()) {
+      result.push(item);
+    }
+  }
+  return result.join("");
+};
+// Version02: Sử dụng regex pattern loại bỏ những chữ không phải là chữ thường ra khỏi
+const firstSecretCodeVer03 = (code) => {
+  return code.replace(/[^a-z]/g, "");
+};
 /**
   9. Trả về fullname khi biết first và last name
     Viết hàm getFullName(firstName, lastName) nhận vào firstName và lastName và trả về chuỗi fullName
