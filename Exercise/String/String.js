@@ -317,7 +317,20 @@ console.log(capitalize_Words_Ver02("Js version"));
   Test Data :
     + swapcase('AaBbc') --> "aAbBC"
 */
-
+const swapcase = (str) => {
+  if (typeof str !== "string") return null;
+  let result = "";
+  let arrLetter = str.trim().split("");
+  for (let item of arrLetter) {
+    if (item === item.toUpperCase()) {
+      result += item.toLowerCase();
+    } else {
+      result += item.toUpperCase();
+    }
+  }
+  return result;
+};
+console.log(swapcase("AaBbc"));
 /**
   16. Viết một hàm JavaScript để chuyển đổi một chuỗi thành camelCase.
   Test Data :
