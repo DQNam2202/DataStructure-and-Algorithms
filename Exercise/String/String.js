@@ -239,37 +239,79 @@ const firstSecretCodeVer03 = (code) => {
     + getFullName("Bob","Tran") --> "Bob Tran"
     + getFullName("john","pHAm") --> "John Pham"
 */
-
+const getFullName = (firstName, lastName) => {
+  let getFirstName = `${firstName.trim()[0].toUpperCase()}${firstName
+    .trim()
+    .slice(1)
+    .toLowerCase()}`;
+  let getLastName = `${lastName.trim()[0].toUpperCase()}${lastName
+    .trim()
+    .slice(1)
+    .toLowerCase()}`;
+};
 /**
   10. Viết một hàm JavaScript để kiểm tra xem một chuỗi có bắt đầu bằng một chuỗi được chỉ định hay không ?
   Test Data: startsWith('js string exercises', 'js') --> true
 */
-
+const startsWith = (str, startLetter) =>
+  str.startsWith(startLetter) ? true : false;
 /**
  * 11. Kiểm tra 1 chuỗi có phải là chuỗi là chuỗi trống hay không ?
   Test Data:
     + is_Blank('')--> true
     + is_Blank('abc')--> false
 */
-
+const is_Blank = (str) => {
+  return str.length !== 0 ? false : true;
+};
 /**
   12. Viết một hàm JavaScript để trích xuất một số ký tự được chỉ định từ một chuỗi, function truncateString('String',number)
   Test Data:
     + truncateString("Robin Singh",4) --> "Robi"
 */
-
+const truncateString = (str, numb) => {
+  return typeof str === "string" && typeof numb === "number"
+    ? str.trim().slice(0, numb)
+    : null;
+};
 /**
   13. Viết một hàm JavaScript để tham số hóa một chuỗi
   Test Data:
     + string_parameterize("Robin Singh from USA.") --> "robin-singh-from-usa"
 */
-
+const string_parameterize = (str) => {
+  return typeof str === "string"
+    ? str.trim().toLowerCase().split(" ").join("-")
+    : null;
+};
 /**
   14. Viết một hàm JavaScript để viết hoa chữ cái đầu tiên của mỗi từ trong một chuỗi.
   Test Data:
     + capitalize_Words('js string exercises') --> "Js String Exercises"
 */
-
+// Version 01:
+const capitalize_Words = (str) => {
+  if (typeof str !== "string") return null;
+  const arrWord = str.trim().split(" ");
+  let result = "";
+  let newArray = [];
+  for (const word of arrWord) {
+    result = `${word.trim()[0].toUpperCase()}${word
+      .trim()
+      .slice(1)
+      .toLowerCase()}`;
+    newArray.push(result);
+  }
+  return newArray.join(" ");
+};
+// Version 02:
+const capitalize_Words_Ver02 = (str) => {
+  if (typeof str !== "string") return null;
+  return str.replace(/\w\S*/g, (txt) => {
+    return `${txt.trim()[0].toUpperCase()}${txt.trim().slice(1).toLowerCase()}`;
+  });
+};
+console.log(capitalize_Words_Ver02("Js version"));
 /**
   15. Viết một hàm JavaScript lấy một chuỗi có các chữ cái thường và chữ hoa làm tham số và chuyển đổi chữ hoa thành chữ thường và chữ thường thành chữ hoa.
   Test Data :
