@@ -371,7 +371,17 @@ const camelizeVer02 = (str) => {
     + uncamelize('helloWorld','-')  --> "hello-world"
     + uncamelize('helloWorld','_')  --> "hello_world"
 */
-
+const uncamelize = (str, sperators = " ") => {
+  if (typeof str !== "string") return null;
+  const findWordUpercase = str
+    .trim()
+    .split("")
+    .find((item) => item === item.toUpperCase());
+  return str.replace(
+    findWordUpercase,
+    `${sperators}${findWordUpercase.toLowerCase()}`
+  );
+};
 /**
   18. Viết một hàm JavaScript để nối một chuỗi đã cho n lần (mặc định là 1).
   Test Data :
@@ -379,7 +389,9 @@ const camelizeVer02 = (str) => {
     + repeat('Ha!',2) --> "Ha!Ha!"
     + repeat('Ha!',3) --> "Ha!Ha!Ha!"
 */
-
+const repeatStr = (str, number = 1) => {
+  return typeof str === "string" ? str.trim().repeat(number) : null;
+};
 /**
   19. Viết một hàm JavaScript để chèn một chuỗi trong một chuỗi ở một vị trí  cụ thể (mặc định là 1)
   Test Data :
