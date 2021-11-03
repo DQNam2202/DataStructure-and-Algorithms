@@ -399,7 +399,16 @@ const repeatStr = (str, number = 1) => {
     + insert('We are doing some exercises.','JavaScript') -->"We are doing some exercises."
     + insert('We are doing some exercises.','JavaScript ',18) --> "We are doing some JavaScript exercises."
 */
-
+const insertString = (str, strReplace, index) => {
+  if (typeof index === "undefined") {
+    index = 0;
+  }
+  if (typeof strReplace === "undefined") {
+    strReplace = " ";
+  }
+  if (typeof str !== "string") return null;
+  return `${str.slice(0, index)}${strReplace}${str.slice(index)}`;
+};
 /**
   20. Viết một hàm JavaScript để cắt một chuỗi thành các đoạn có độ dài nhất định.
   Test Data :
