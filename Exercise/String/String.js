@@ -311,7 +311,6 @@ const capitalize_Words_Ver02 = (str) => {
     return `${txt.trim()[0].toUpperCase()}${txt.trim().slice(1).toLowerCase()}`;
   });
 };
-console.log(capitalize_Words_Ver02("Js version"));
 /**
   15. Viết một hàm JavaScript lấy một chuỗi có các chữ cái thường và chữ hoa làm tham số và chuyển đổi chữ hoa thành chữ thường và chữ thường thành chữ hoa.
   Test Data :
@@ -322,15 +321,23 @@ const swapcase = (str) => {
   let result = "";
   let arrLetter = str.trim().split("");
   for (let item of arrLetter) {
-    if (item === item.toUpperCase()) {
-      result += item.toLowerCase();
-    } else {
-      result += item.toUpperCase();
-    }
+    result +=
+      item === item.toLowerCase() ? item.toUpperCase() : item.toLowerCase();
   }
   return result;
 };
-console.log(swapcase("AaBbc"));
+
+// Swapcacse Version 02: Sử dụng map()
+const swapcaseVer02 = (str) => {
+  if (typeof str !== "string") return null;
+  return str
+    .trim()
+    .split("")
+    .map((item) =>
+      item === item.toUpperCase() ? item.toLowerCase() : item.toUpperCase()
+    )
+    .join("");
+};
 /**
   16. Viết một hàm JavaScript để chuyển đổi một chuỗi thành camelCase.
   Test Data :
