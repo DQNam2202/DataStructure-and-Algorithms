@@ -416,7 +416,18 @@ const insertString = (str, strReplace, index) => {
     + stringChop('w3resource',2) --> ["w3", "re", "so", "ur", "ce"]
     + stringChop('w3resource',3) --> ["w3r", "eso", "urc", "e"]
 */
-
+const stringChop = (str, numbSplit) => {
+  if (numbSplit === "undefined") {
+    return str;
+  }
+  let arrNewStr = [];
+  if (typeof str !== "string") return null;
+  for (let i = 0; i < str.length; i += numbSplit) {
+    let element = str.slice(i, i + numbSplit);
+    arrNewStr.push(element);
+  }
+  return arrNewStr;
+};
 /**
   21. Viết một hàm JavaScript để tách các khoảng trắng ở đầu và cuối khỏi một chuỗi
   Test Data :
@@ -424,7 +435,10 @@ const insertString = (str, strReplace, index) => {
     + strip(' w3resource')  --> "w3resource"
     + strip(' w3resource ') --> "w3resource"
 */
-
+const strip = (str) => {
+  if (typeof str !== "string") return null;
+  return str.trim();
+};
 /**
   22. Viết một hàm JavaScript để chuyển đổi ASCII sang định dạng Hệ thập lục phân
   Test Data :
