@@ -345,7 +345,25 @@ const swapcaseVer02 = (str) => {
     + camelize("JavaScript exercises") --> "JavaScriptExercises"
     + camelize("JavaScriptExercises")  --> "JavaScriptExercises"
 */
-
+// Sử dụng map
+const camelize = (str) => {
+  if (typeof str !== "string") return null;
+  return str
+    .trim()
+    .split(" ")
+    .map((item) => item[0].toUpperCase() + item.slice(1).toLowerCase())
+    .join("");
+};
+// Sử dụng for of
+const camelizeVer02 = (str) => {
+  if (typeof str !== "string") return null;
+  let result = "";
+  const arrStrCamelize = str.trim().split(" ");
+  for (let word of arrStrCamelize) {
+    result += `${word[0].toUpperCase()}${word.slice(1).toLowerCase()}`;
+  }
+  return result;
+};
 /**
   17. Write a JavaScript function to uncamelize a string
   Test Data :
