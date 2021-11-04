@@ -445,21 +445,46 @@ const strip = (str) => {
     + ascii_to_hexa('12')   --> "3132"
     + ascii_to_hexa('100')  --> "313030"
 */
-
+const ascii_to_hexa = (ascii) => {
+  if (typeof ascii !== "string") return null;
+  let result = [];
+  for (let i = 0; i < ascii.length; i++) {
+    let element = ascii.charCodeAt(i).toString(16);
+    result.push(element);
+  }
+  return result.join("");
+};
 /**
   23. Viết một hàm JavaScript để chuyển đổi hệ thập lục phân sang định dạng ASCII
   Test Data :
     + hex_to_ascii('3132')    --> "12"
     + hex_to_ascii('313030')  --> "100"
 */
-
+const hex_to_ascii = (hexStr) => {
+  if (typeof hexStr !== "string") return null;
+  let result = "";
+  for (let i = 0; i < hexStr.length; i += 2) {
+    result += String.fromCharCode(parseInt(hexStr.substr(i, 2), 16));
+  }
+  return result;
+};
 /**
   24. Viết một hàm JavaScript để tìm một từ trong một chuỗi
   Test Data :
     + search_word('The quick brown fox', 'fox') --> "'fox' was found 1 times."
     + search_word('aa, bb, cc, dd, aa', 'aa')   --> "'aa' was found 2 times."
 */
-
+const search_word = (str, word) => {
+  if (typeof str !== "string" || typeof word !== "string") return null;
+  let count = 0;
+  let arrStr = str.trim().split(" ");
+  for (let item of arrStr) {
+    if (item === word) {
+      count += 1;
+    }
+  }
+  return `${word} was found ${count} times`;
+};
 /**
   25. Viết một hàm JavaScript để xóa các ký tự ASCII?
   Test Data :
