@@ -490,12 +490,23 @@ const search_word = (str, word) => {
   Test Data :
     + remove_non_ascii('???????PHP-MySQL??????') --> "PHP-MySQL"
 */
-
+const remove_non_ascii = (str) => {
+  return typeof str === "string" ? str.replace(/^\W+|\W+$/g, "").trim() : null;
+};
+console.log(remove_non_ascii("???????PHP-MySQL??????"));
 /**
   26. Viết một hàm JavaScript để chuyển đổi một chuỗi thành chữ hoa tiêu đề.
   Test Data :
     + sentenceCase('PHP exercises. python exercises.') --> "Php Exercises. Python Exercises."
 */
+const sentenceCase = (str) => {
+  if (typeof str !== "string") return null;
+  return str
+    .trim()
+    .split(" ")
+    .map((item) => `${item[0].toUpperCase()}${item.slice(1).toLowerCase()}`)
+    .join(" ");
+};
 
 /**
   27. Viết một hàm JavaScript để kiểm tra so sánh chuỗi không phân biệt chữ hoa chữ thường (ngoại trừ các ký tự Unicode đặc biệt).
