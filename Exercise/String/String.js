@@ -239,15 +239,19 @@ const firstSecretCodeVer03 = (code) => {
     + getFullName("Bob","Tran") --> "Bob Tran"
     + getFullName("john","pHAm") --> "John Pham"
 */
+const getName = (name) => {
+  if (typeof name !== "string") return null;
+  const trimmed = name.trim().toUpperCase();
+  return `${trimmed[0]}${trimmed.slice(1).toLowerCase()}`;
+};
 const getFullName = (firstName, lastName) => {
-  let getFirstName = `${firstName.trim()[0].toUpperCase()}${firstName
-    .trim()
-    .slice(1)
-    .toLowerCase()}`;
-  let getLastName = `${lastName.trim()[0].toUpperCase()}${lastName
-    .trim()
-    .slice(1)
-    .toLowerCase()}`;
+  const fn = getName(firstName);
+  const ln = getName(lastName);
+  if (firstName === undefined) firstName = "";
+  if (lastName === undefined) lastName = "";
+  if (firstName === "") return `${ln}`;
+  if (lastName === "") return `${fn}`;
+  return `${fn} ${ln}`.trim();
 };
 /**
   10. Viết một hàm JavaScript để kiểm tra xem một chuỗi có bắt đầu bằng một chuỗi được chỉ định hay không ?
