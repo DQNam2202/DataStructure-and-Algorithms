@@ -514,12 +514,20 @@ const sentenceCase = (str) => {
     + compare_strings('abcd', 'AbcD') --> true;
     + compare_strings('ABCD', 'Abce') --> false;
 */
+const compare_strings = (str01, str02) => {
+  if (typeof str01 !== "string" || typeof str02 !== "string") return null;
+  return str01.toLowerCase() === str02.toLowerCase() ? true : false;
+};
 
 /**
   28. Viết một hàm JavaScript để Uncapitalize? ký tự đầu tiên của một chuỗi.
   Test Data :
     + Uncapitalize('Js string exercises') --> "js string exercises"
 */
+const Uncapitalize = (str) => {
+  if (typeof str !== "string") return null;
+  return `${str[0].toLowerCase()}${str.trim().slice(1)}`;
+};
 
 /**
   29. Viết hàm JavaScript để tạo tìm kiếm không phân biệt chữ hoa chữ thường
@@ -528,15 +536,46 @@ const sentenceCase = (str) => {
     + case_insensitive_search('JavaScript Exercises', 'Exercises') --> "Matched"
     + case_insensitive_search('JavaScript Exercises', 'Exercisess') --> "Not Matched"
 */
-
+const case_insensitive_search = (str, strSearch) => {
+  let result = "";
+  if (typeof str !== "string" || typeof strSearch !== "string") return null;
+  const arrStr = str.trim().split(" ");
+  for (let item of arrStr) {
+    if (item.trim().toLowerCase() === strSearch.trim().toLowerCase()) {
+      result = `Matched`;
+    } else {
+      result = `Not Matched`;
+    }
+  }
+  return result;
+};
 /**
   30. Viết một hàm JavaScript để kiểm tra xem ký tự tại chỉ mục (ký tự) được cung cấp có phải là chữ hoa hay không.
   Test Data :
     + isUpperCaseAt('Js STRING EXERCISES', 1)  -->  false
 */
-
+const isUpperCaseAt = (str, numb) => {
+  if (typeof str !== "string" || typeof numb !== "number") return null;
+  return str[numb].toUpperCase() === str[numb];
+};
+// Sử dụng split:
+const isUpperCaseAtVer02 = (str, numb) => {
+  if (typeof str !== "string" || typeof numb !== "number") return null;
+  const arrStr = str.split("");
+  return arrStr[numb] === arrStr[numb].toUpperCase() ? true : false;
+};
 /**
   31. Viết một hàm JavaScript để kiểm tra xem ký tự tại chỉ mục (ký tự) được cung cấp có phải là chữ thường hay không ?
   Test Data :
     + isLowerCaseAt ('Js STRING EXERCISES', 1)  --> true
 */
+const isLowerCaseAt = (str, numb) => {
+  if (typeof str !== "string" || typeof numb !== "number") return null;
+  return str[numb].toLowerCase() === str[numb];
+};
+// Sử dụng split:
+const isLowerCaseAtVer02 = (str, numb) => {
+  if (typeof str !== "string" || typeof numb !== "number") return null;
+  const arrStr = str.split("");
+  return arrStr[numb] === arrStr[numb].toLowerCase() ? true : false;
+};
