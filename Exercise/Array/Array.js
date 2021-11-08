@@ -71,12 +71,21 @@ const flattenRecursion = (arr) => {
   }
   return result;
 };
-// Version04: Sử dụng reduce - Tối ưu hơn
+// Version 04: Sử dụng reduce - Tối ưu hơn
 const flattenReduce = (arr) => {
   if (typeof arr !== "object") return null;
   return arr.reduce((pre, cur, index) => {
     return pre.concat(Array.isArray(cur) ? flattenReduce(cur) : cur);
   }, []);
+};
+// Version 05: Spread Operator
+// some: kiểm tra xem trong mảng đó có ít nhất một phương thức có vượt qua đc condition hay không ?
+const flatSpreadOperator = (arr) => {
+  if (typeof arr !== "object") return null;
+  while (arr.some((item) => Array.isArray(item))) {
+    arr = [].concat(...arr);
+  }
+  return arr;
 };
 /**
   6. Đảo ngược số nguyên. Math.sign(Sô nguyên | Số âm):
@@ -103,12 +112,25 @@ const reversePosNumbVer02 = (numb) => {
   return result * Math.sign(numb);
 };
 /**
-  7. Viết chương trình có tên là fizzBuzz với đầu vào là một số nguyên, và cho chạy từ 1 đến số nguyên đó rồi kiệm tra:
+  7. Viết chương trình có tên là fizzBuzz với đầu vào là một số nguyên, và cho chạy từ 1 đến số nguyên đó rồi kiểm tra:
     + Nếu số nguyên đó chia hết cho 2 thì in ra chữ 'Fizz'.
     + Nếu chia hết cho 3 thì in ra chữ 'Buzz'.
     + Nếu chia hết cho 2 và 3 thì in ra chữ 'FizzBuzz'
 */
-
+const fizzBuzz = (numb) => {
+  if (typeof numb !== "number" || numb < 0) return null;
+  let result = [];
+  for (let i = 1; i <= numb; i++) {
+    if (i % 2 === 0 && i % 3 === 0) {
+      result.push(`FizzBuzz`);
+    } else if (i % 3 === 0) {
+      result.push(`Buzz`);
+    } else if (i % 2 === 0) {
+      result.push(`Fizz`);
+    }
+  }
+  return result;
+};
 /**
   8: Cho một chuỗi bất kỳ, đếm số lượng ký tự 'vowels' có trong chuỗi.
   Hint:
