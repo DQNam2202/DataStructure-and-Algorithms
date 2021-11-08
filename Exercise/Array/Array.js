@@ -136,7 +136,30 @@ const fizzBuzz = (numb) => {
   Hint:
     + vowels: là các ký tự u e a o i
 */
-
+// Version 01: Sử dụng includes
+const coutnVowels = (str) => {
+  if (typeof str !== "string") return null;
+  const vowels = ["u", "e", "a", "o", "i"];
+  const arr = str.trim().split("");
+  let count = 0;
+  for (let item of arr.toLowerCase()) {
+    if (vowels.includes(item)) {
+      count += 1;
+    }
+  }
+  return count;
+};
+// Verison 02: Sử dụng RegularExpression
+// -> Sử dụng String.Properties.match(): truy xuất kết quả của việc so khớp một chuỗi với một biểu thức chính quy.
+const countVowelsUsingRegex = (str) => {
+  if (typeof str !== "string") return null;
+  return str.match(/[aeiou]/gi) === null ? 0 : str.match(/[aeiou]/gi).length;
+};
+// Version 03: Sử dụng replace kết hợp với Regex
+const countVowelsUsReplace = (str) => {
+  if (typeof str !== "string") return null;
+  return str.replace(/[^ueaoi]/gi, "").length;
+};
 /**
   9. Cho một mảng gồm các giá trị số [1,2,3,1,1,1,2,2,2,5,5,5,7,6,9,8,8,8].
   Viết một function trả về 1 mảng với các giá trị unique.
