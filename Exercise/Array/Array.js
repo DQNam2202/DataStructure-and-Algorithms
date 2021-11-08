@@ -166,19 +166,49 @@ const countVowelsUsReplace = (str) => {
   Result: [1,2,3,4,5,6,7,8]
   Hint: Sử dụng Set, Filter, Reduce
 */
+// Version 01: Sử dụng Array.From(new Set(array))
+const uniqueItemInArray = (arr) => {
+  return typeof arr === "object"
+    ? Array.from(new Set(arr)).sort((a, b) => a - b)
+    : null;
+};
+// Version 02: Sử dụng Filter
+const uniqueItemFilter = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.filter((item, index) => arr.indexOf(item) === index);
+};
+// Version 03: Sử dụng Reduce
+const uniqueItemReduce = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.reduce((acc, item) => {
+    if (!acc.includes(item)) {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
+};
 
 /**
   10: Viết chương trình xử lý 1 mảng lớn thành nhiều mảng con dự vào một số nguyên đầu vào.
   Example ([1,2,3,4,5],2) -> [[1,2], [3,4], [5]]
 */
-
+const splitArray = (arr, size) => {
+  if (typeof arr !== "object" || typeof size !== "number") return null;
+  let result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+};
 /**
   11. Viết một hàm JavaScript để kiểm tra xem 'đầu vào' có phải là một mảng hay không.
   Test Data :
     + isArray('w3resource') --> false
     + isArray([1, 2, 4, 0]) --> true
 */
-
+const isArr = (arr) => {
+  return Array.isArray(arr);
+};
 /**
   13. Viết một hàm JavaScript để lấy phần tử đầu tiên của một mảng.
   => Truyền tham số 'n' sẽ trả về 'n' phần tử đầu tiên của mảng
