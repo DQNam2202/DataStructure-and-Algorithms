@@ -84,7 +84,24 @@ const flattenReduce = (arr) => {
     + Khi nhập vào số nguyên thì giá trị trả về là 1
     + Khi nhập vào số âm thì giá trị trả về là -1
 */
-
+const reversePosNumb = (numb) => {
+  return typeof numb === "number"
+    ? +Math.abs(numb).toString().trim().split("").reverse().join("") *
+        Math.sign(numb)
+    : null;
+};
+// Version 02: Sử dụng Math()
+const reversePosNumbVer02 = (numb) => {
+  let n = Math.abs(numb);
+  let result = 0,
+    digit = 0;
+  while (n > 0) {
+    digit = n % 10;
+    result = result * 10 + digit;
+    n = parseInt(n / 10);
+  }
+  return result * Math.sign(numb);
+};
 /**
   7. Viết chương trình có tên là fizzBuzz với đầu vào là một số nguyên, và cho chạy từ 1 đến số nguyên đó rồi kiệm tra:
     + Nếu số nguyên đó chia hết cho 2 thì in ra chữ 'Fizz'.
