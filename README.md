@@ -65,3 +65,46 @@ Khi ta thay đổi giá trị của object, tất cả các biến tham chiếu 
 
 </p>
 </details>
+
+---
+
+###### 3. Output là gì?
+
+```javascript
+(function js(x) {
+  const y = (j) => j * x;
+
+  console.log(y(s()));
+
+  function s() {
+    return j();
+  }
+
+  function j() {
+    return x ** x;
+  }
+})(3);
+```
+
+- A: 81
+- B: 18
+- C: `Undefine`
+- D: 21
+
+<details><summary><b>Đáp án</b></summary>
+<p>
+
+#### Đáp án: A
+
+Hàm js () thực thi tự động mà không cần gọi nó và được gọi là IIFE (Immediately Invoked Function Expression) có nghĩa là khởi tạo một function và thực thi nó ngay lập tức. Lưu ý, tham số x của hàm js được truyền vào với giá trị 3.
+
+Giá trị trả về của hàm là y(s())), có nghĩa là gọi ba hàm khác là y(), s() và j() vì hàm s() trả về j().
+
+Hàm j() trả về x\*\*x, có nghĩa là x^x là 3^3 = 27.
+
+Hàm y(s()) có nghĩa là y(27) suy ra ta được 27\*3 = 81.
+
+Lưu ý rằng chúng ta có thể gọi hàm khai báo TRƯỚC khi hàm thực sự được khai báo
+
+</p>
+</details>
