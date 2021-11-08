@@ -31,13 +31,53 @@ const toUpperCaseFirstLetter = (str) => {
     + Viết chương trình loại bỏ các giá trị falsy ra khỏi mảng chỉ giữ lại giá trị truthhy.
     + Hint: giá trị falsy là 0, null, undefined, false, NaN, ""
 */
-
+// Version 01: Sử dụng filter(Boolean)
+const removeFalsy = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.filter(Boolean).flat(1);
+};
+// Version 02: Sử dụng dụng !!item => Boolean
+const removeFalsyVer02 = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.filter((item) => !!item).flat(1);
+};
 /**
   5. Cho 1 mảng phức tạp [[1,2,3,[false, null]], [1,5,6,["javascripts"]], [888, 666, [98]]].
   Result:
     + [1,2,3,false, null,1,5,6,"javascripts",888,666,98]
+  Hint: Flatten, Đệ quy, Reduce, Spread Operator
 */
-
+// Version 01: Flatten(gia_tri)
+const arrayComplex = (arr) => {
+  if (typeof arr !== "object") return null;
+  return [...new Set(arr.flat(2).filter(Boolean))];
+};
+// Version 02: Sử dụng Flatten(Infinity)_ES6
+const arrComplexVer02 = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.flat(Infinity);
+};
+// Version 03: Sử dụng đệ quy => Sử dụng Array.
+const flattenRecursion = (arr) => {
+  if (typeof arr !== "object") return null;
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    // isArray: Kiểm tra xem giá trị truyền vào có phải là mảng hay không
+    if (Array.isArray(arr[i])) {
+      result.push(...flattenRecursion(arr[i]));
+    } else {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
+// Version04: Sử dụng reduce - Tối ưu hơn
+const flattenReduce = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.reduce((pre, cur, index) => {
+    return pre.concat(Array.isArray(cur) ? flattenReduce(cur) : cur);
+  }, []);
+};
 /**
   6. Đảo ngược số nguyên. Math.sign(Sô nguyên | Số âm):
    Trong đó:
@@ -62,6 +102,7 @@ const toUpperCaseFirstLetter = (str) => {
   9. Cho một mảng gồm các giá trị số [1,2,3,1,1,1,2,2,2,5,5,5,7,6,9,8,8,8].
   Viết một function trả về 1 mảng với các giá trị unique.
   Result: [1,2,3,4,5,6,7,8]
+  Hint: Sử dụng Set, Filter, Reduce
 */
 
 /**
