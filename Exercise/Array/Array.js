@@ -1,15 +1,29 @@
 /**
   1: Đảo ngược 1 chuỗi 'Duong Quoc Nam' => 'Nam Quoc Duong'
 */
-
+const reservedString = (str) => {
+  if (typeof str !== "string") return null;
+  return str.trim().split(" ").reverse().join(" ");
+};
 /**
   2: Đảo ngược một chuỗi bao gồm các ký tự 'Duong Quoc Nam' => 'maN couQ gnouD'
 */
-
+const reverseLetter = (str) => {
+  if (typeof str !== "string") return null;
+  return str.trim().split("").reverse().join("");
+};
 /**
   3: In hoa các chữ cái đầu trong 1 chuỗi 'duong quoc nam' => 'Duong Quoc Nam'
 */
-
+const toUpperCaseFirstLetter = (str) => {
+  if (typeof str !== "string") return null;
+  let arrStr = [];
+  const arrSplit = str.trim().split(" ");
+  for (let item of arrSplit) {
+    arrStr.push(`${item[0].toUpperCase()}${item.slice(1).toLowerCase()}`);
+  }
+  return arrStr.join(" ");
+};
 /**
   4. Cho một mảng gồm nhiều giá trị:
   - Example: [1,1000,false,null,"Duong Quoc Nam","",undefined,"javascripts",[1,2,3]].
