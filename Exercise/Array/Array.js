@@ -324,7 +324,6 @@ const inserDashVer02 = (numb) => {
   }
   return result.join("");
 };
-console.log(inserDashVer02(4453468));
 /**
   17. Viết chương trình JavaScript để sắp xếp các mục của một mảng.
   Example:
@@ -334,6 +333,21 @@ const sortArr = (arr) => {
   if (typeof arr !== "object") return null;
   return arr.sort((a, b) => a - b);
 };
+// Sorting array using bubbersort
+const sortUsingBubblesort = (arr) => {
+  if (typeof arr !== "object") return null;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return arr;
+};
+console.log(sortUsingBubblesort([3, 8, 7, 6, 5, -4, 3, 2, 1]));
 /**
   18. Viết chương trình JavaScript để tìm mục xuất hiện thường xuyên nhất trong một mảng.
   Example:
