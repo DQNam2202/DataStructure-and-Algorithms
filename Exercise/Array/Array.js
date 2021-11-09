@@ -232,10 +232,28 @@ const first = (arr, n = 1) => {
     + last([7, 9, 0, -2],3) --> [9, 0, -2]
     + last([7, 9, 0, -2],6) --> [7, 9, 0, -2]
 */
+// Version 01: Sử dụng Array.slice()
 const last = (arr, n = 1) => {
   if (typeof arr !== "object" || typeof n !== "number") return null;
   if (arr.length === 0) return [];
-  return arr.length < n ? arr.slice(arr.length - n) : arr;
+  if (n === 1) return arr[arr.length - 1];
+  return arr.length < n ? arr : arr.slice(arr.length - n);
+};
+// Version 02:
+const lastVer02 = (arr, numb) => {
+  if (Array.isArray(arr)) {
+    if (numb === undefined) return arr[arr.length - 1];
+    return numb > 0 ? arr.slice(-numb) : arr.slice(numb);
+  }
+  return null;
+};
+// Versionn 03:
+const lastVer03 = (arr, numb) => {
+  if (Array.isArray(arr)) {
+    if (numb === undefined) return arr[arr.length - 1];
+    return arr.slice(Math.max(arr.length - numb, 0));
+  }
+  return null;
 };
 /**
   15. Viết một chương trình JavaScript đơn giản để nối tất cả các phần tử của mảng sau thành một chuỗi
@@ -245,7 +263,33 @@ const last = (arr, n = 1) => {
     + "Red,Green,White,Black"
     + "Red+Green+White+Black"
 */
-
+// Sử dụng join()
+const myColor = (arr, symbol) => {
+  if (typeof arr !== "object") return null;
+  return arr.join(`${symbol}`);
+};
+// Sử dụng for
+const myColorFor = (arr, symbol) => {
+  if (typeof arr !== "object") return null;
+  let result = "";
+  for (let i = 0; i < arr.length; i++) {
+    result += `${arr[i]}${symbol}`;
+  }
+  return result.slice(0, -1);
+};
+// Sử dụng for version 02
+const myColorForVer02 = (arr, symbol) => {
+  if (typeof arr !== "object" || typeof symbol !== "string") return null;
+  let result = "";
+  for (let i = 0; i < arr.length; i++) {
+    if (i !== arr.length - 1) {
+      result += `${arr[i]}${symbol}`;
+    } else {
+      result += arr[i];
+    }
+  }
+  return result;
+};
 /**
   16. Viết chương trình JavaScript chấp nhận một số làm đầu vào và chèn dấu gạch ngang (-) vào giữa hai số chẵn.
   Example:
