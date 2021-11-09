@@ -347,13 +347,57 @@ const sortUsingBubblesort = (arr) => {
   }
   return arr;
 };
-console.log(sortUsingBubblesort([3, 8, 7, 6, 5, -4, 3, 2, 1]));
 /**
   18. Viết chương trình JavaScript để tìm mục xuất hiện thường xuyên nhất trong một mảng.
   Example:
     + [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3] --> a (5 lần)
 */
-
+const countMaxItem = (arr) => {
+  if (typeof arr !== "object") return null;
+  let result = {};
+  for (let i = 0; i < arr.length; i++) {
+    if (result[arr[i]] === undefined) {
+      result[arr[i]] = 1;
+    } else {
+      result[arr[i]]++;
+    }
+  }
+  let max = 0;
+  let maxItem = "";
+  for (let key in result) {
+    if (result[key] > max) {
+      max = result[key];
+      maxItem = key;
+    }
+  }
+  return `${maxItem} (${max} lần)`;
+};
+console.log(countMaxItem([3, "a", "a", "a", 2, 3, "a", 3, "a", 2, 4, 9, 3]));
+// Version 02:
+// Đếm số lần xuất hiện của giá trị trong mảng
+const createObj = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.reduce((obj, item) => {
+    if (!obj[item]) {
+      obj[item] = 1;
+    } else {
+      obj[item] = obj[item] + 1;
+    }
+    return obj;
+  }, {});
+};
+const countMaxItemVer02 = (arr) => {
+  let obj = createObj(arr);
+  let max = 0;
+  let maxItem = "";
+  for (let key in obj) {
+    if (obj[key] > max) {
+      max = obj[key];
+      maxItem = key;
+    }
+  }
+  return `${maxItem} (${max} lần)`;
+};
 /**
   19. Viết một chương trình JavaScript chấp nhận một chuỗi làm đầu vào và hoán đổi trường hợp của mỗi ký tự.
   Example:
