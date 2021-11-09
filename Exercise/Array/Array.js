@@ -295,13 +295,45 @@ const myColorForVer02 = (arr, symbol) => {
   Example:
   + 025468  --> 0-254-6-8.
 */
-
+const insertDash = (numb) => {
+  if (typeof numb !== "number") return null;
+  let result = "";
+  let str = numb.toString();
+  for (let i = 0; i < str.length; i++) {
+    // Xét phần tử đó và sau nó có chia hết cho 2 hay không ?
+    if (str[i] % 2 === 0 && str[i + 1] % 2 === 0) {
+      result += `${str[i]}-`;
+    } else {
+      result += str[i];
+    }
+  }
+  return result;
+};
+// insertDash version 02: using array
+const inserDashVer02 = (numb) => {
+  if (typeof numb !== "number") return null;
+  let result = [];
+  let str = numb.toString();
+  for (let i = 0; i < str.length; i++) {
+    // Xét phần tử đó và sau nó có chia hết cho 2 hay không ?
+    if (str[i] % 2 === 0 && str[i + 1] % 2 === 0) {
+      result.push(`${str[i]}-`);
+    } else {
+      result.push(str[i]);
+    }
+  }
+  return result.join("");
+};
+console.log(inserDashVer02(4453468));
 /**
   17. Viết chương trình JavaScript để sắp xếp các mục của một mảng.
   Example:
     + [ 3, 8, 7, 6, 5, -4, 3, 2, 1 ]; -->  [-4, -3, 1, 2, 3, 5, 6, 7, 8]
 */
-
+const sortArr = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.sort((a, b) => a - b);
+};
 /**
   18. Viết chương trình JavaScript để tìm mục xuất hiện thường xuyên nhất trong một mảng.
   Example:
@@ -377,9 +409,8 @@ const myColorForVer02 = (arr, symbol) => {
     array2 = [2, 30, 1];
   + merge_array(array1, array2) --> [3, 2, 30, 1]
 */
-
 /**
-  30. Viết một hàm JavaScript để xóa một phần tử cụ thể khỏi một mảng.
+ * 30. Viết một hàm JavaScript để xóa một phần tử cụ thể khỏi một mảng.
   Example:
     + remove_array_element([2, 5, 9, 6], 5) --> [2, 9, 6]
-*/
+ */
