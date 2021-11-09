@@ -219,7 +219,11 @@ const isArr = (arr) => {
     + first([7, 9, 0, -2],6)  --> [7, 9, 0, -2]
     + first([7, 9, 0, -2],-3) --> []
 */
-
+const first = (arr, n = 1) => {
+  if (typeof arr !== "object" || typeof n !== "number") return null;
+  if (arr.length === 0 || n < 0) return [];
+  return arr.slice(0, n);
+};
 /**
   14. Viết một hàm JavaScript để lấy phần tử cuối cùng của một mảng.
   Truyền tham số 'n' sẽ trả về 'n' phần tử cuối cùng của mảng
@@ -228,7 +232,11 @@ const isArr = (arr) => {
     + last([7, 9, 0, -2],3) --> [9, 0, -2]
     + last([7, 9, 0, -2],6) --> [7, 9, 0, -2]
 */
-
+const last = (arr, n = 1) => {
+  if (typeof arr !== "object" || typeof n !== "number") return null;
+  if (arr.length === 0) return [];
+  return arr.length < n ? arr.slice(arr.length - n) : arr;
+};
 /**
   15. Viết một chương trình JavaScript đơn giản để nối tất cả các phần tử của mảng sau thành một chuỗi
   Sample array : myColor = ["Red", "Green", "White", "Black"];
