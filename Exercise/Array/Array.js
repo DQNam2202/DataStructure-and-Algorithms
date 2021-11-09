@@ -435,14 +435,25 @@ const swapLetterVer03 = (str) => {
       : result + item.toUpperCase();
   }, "");
 };
-
 /**
   20. Viết chương trình JavaScript để tìm tổng bình phương của một vectơ số.
   Example:
     + [0,1,2,3,4] --> 30
   Giải Thich: 0^2 + 1^2 + 2^2 + 3^2 + 4^2 = 30
 */
-
+const sumOfSquare = (arr) => {
+  if (typeof arr !== "object") return null;
+  let result = 0;
+  for (let i = 0; i < arr.length; i++) {
+    result += Math.pow(arr[i], 2);
+  }
+  return result;
+};
+// Sử dụng reduce
+const sumOfSquareVer02 = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.reduce((result, item) => (result += Math.pow(item, 2)), 0);
+};
 /**
   21. Viết chương trình JavaScript để tính tổng và tích của một mảng số nguyên
 */
