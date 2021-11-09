@@ -104,7 +104,44 @@ Hàm j() trả về x\*\*x, có nghĩa là x^x là 3^3 = 27.
 
 Hàm y(s()) có nghĩa là y(27) suy ra ta được 27\*3 = 81.
 
-Lưu ý rằng chúng ta có thể gọi hàm khai báo TRƯỚC khi hàm thực sự được khai báo
+Lưu ý: rằng chúng ta có thể gọi hàm khai báo TRƯỚC khi hàm thực sự được khai báo
+
+</p>
+</details>
+
+---
+
+###### 4. Output là gì?
+
+```javascript
+const js = { language: "JavaScripts", label: "difficult" };
+
+const edu = { ...js, level: "Senior" };
+
+const newbie = edu;
+
+delete edu.language;
+
+console.log(Object.keys(newbie).length);
+```
+
+- A: 5
+- B: 4
+- C: 2
+- D: 3
+
+<details><summary><b>Đáp án</b></summary>
+<p>
+
+#### Đáp án: C
+
+Bài toán trên có liên quan đến một tính năng của ES6 là `spread operator(...)`.Toán tử Spread khá hữu ích để truy xuất tham số trong hàm, để hợp nhất hoặc kết hợp đối tượng và mảng trong JavaScript.
+
+Trong biến edu, chúng ta sử dụng ... js (ở đây là toán tử spread) để kết hợp cả hai đối tượng thành một.
+
+Sau đó, chúng ta khai báo một biến khác có tên là newbie. Lưu ý QUAN TRỌNG: Bằng cách khai báo biến như vậy, cả hai biến đều trỏ đến VỊ TRÍ CÙNG NHAU trong bộ nhớ.
+
+Tiếp đến, chúng ta ta thấy chỉ còn lại là 2 vì edu.language đã bị xóa. Cả hai đối tượng bây giờ chỉ có hai phần tử.
 
 </p>
 </details>
