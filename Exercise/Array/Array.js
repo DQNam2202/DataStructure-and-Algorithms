@@ -372,7 +372,6 @@ const countMaxItem = (arr) => {
   }
   return `${maxItem} (${max} lần)`;
 };
-console.log(countMaxItem([3, "a", "a", "a", 2, 3, "a", 3, "a", 2, 4, 9, 3]));
 // Version 02:
 // Đếm số lần xuất hiện của giá trị trong mảng
 const createObj = (arr) => {
@@ -404,6 +403,38 @@ const countMaxItemVer02 = (arr) => {
     + 'The Quick Brown Fox' -->  'tHE qUICK bROWN fOX'.
     + 'Javascript' --> 'jAVASCRIPT'
 */
+const swapLetter = (str) => {
+  if (typeof str !== "string") return null;
+  let result = [];
+  const arrLetter = str.split("");
+  for (let item of arrLetter) {
+    if (item === item.toUpperCase()) {
+      result.push(item.toLowerCase());
+    } else {
+      result.push(item.toUpperCase());
+    }
+  }
+  return result.join("");
+};
+// Sử dụng map
+const swapLetterVer02 = (str) => {
+  if (typeof str !== "string") return null;
+  return str
+    .split("")
+    .map((item) =>
+      item === item.toUpperCase() ? item.toLowerCase() : item.toUpperCase()
+    )
+    .join("");
+};
+// Sử dụng Reduce
+const swapLetterVer03 = (str) => {
+  if (typeof str !== "string") return null;
+  return str.split("").reduce((result, item) => {
+    return item === item.toUpperCase()
+      ? result + item.toLowerCase()
+      : result + item.toUpperCase();
+  }, "");
+};
 
 /**
   20. Viết chương trình JavaScript để tìm tổng bình phương của một vectơ số.
