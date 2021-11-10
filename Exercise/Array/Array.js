@@ -518,7 +518,15 @@ const mixArrayVer02 = (arr) => {
   Example :
     + flatten([1, [2], [3, [[4]]],[5,6]]) --> [1, 2, 3, 4, 5, 6]
 */
+// Using Reduce
 
+// Using Filter
+
+// Using Recursion
+
+// Sử dụng Array.flat()
+
+// Sử dụng Pre-ES6
 /**
   28. Viết một hàm JavaScript để tìm sự khác biệt của hai mảng.
   Test Data :
@@ -526,7 +534,43 @@ const mixArrayVer02 = (arr) => {
     + difference([1, 2, 3, 4, 5], [1, [2], [3, [[4]]],[5,6]]) --> ["6"]
     + difference([1, 2, 3], [100, 2, 1, 10])   --> ["3", "10", "100"]
 */
-
+const difference = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  const arrConcat = [...arr1.flat(Infinity), ...arr2.flat(Infinity)];
+  let reuslt = {};
+  for (let i = 0; i < arrConcat.length; i++) {
+    if (reuslt[arrConcat[i]] === undefined) {
+      reuslt[arrConcat[i]] = 1;
+    } else {
+      reuslt[arrConcat[i]]++;
+    }
+  }
+  return Object.keys(reuslt).filter((item) => reuslt[item] === 1);
+};
+// Sử dụng Obj
+const differenceVer02 = (arr1, arr2) => {
+  // Check type Array
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  // Flatten Array
+  const arrConcat = [...arr1.flat(Infinity), ...arr2.flat(Infinity)];
+  // Count the number of occurrences of the element in the array
+  const obj = arrConcat.reduce((acc, item) => {
+    if (!acc[item]) {
+      acc[item] = 1;
+    } else {
+      acc[item]++;
+    }
+    return acc;
+  }, {});
+  // Filter the element that occurs only once
+  let result = [];
+  for (let key in obj) {
+    if (obj[key] === 1) {
+      result.push(key);
+    }
+  }
+  return result;
+};
 /**
   29. Viết một hàm JavaScript để hợp nhất hai mảng và loại bỏ tất cả các phần tử trùng lặp.
   Example:
