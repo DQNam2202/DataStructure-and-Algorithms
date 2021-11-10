@@ -145,3 +145,36 @@ Tiếp đến, chúng ta ta thấy chỉ còn lại là 2 vì edu.language đã 
 
 </p>
 </details>
+
+---
+
+###### 5. Output là gì?
+
+```javascript
+let a = 3;
+let b = 3;
+let c = new Number(3);
+
+console.log(a == c);
+console.log(a === c);
+console.log(b === c);
+```
+
+- A: `true` `false` `false`
+- B: `true` `false` `true`
+- C: `false` `true` `true`
+- D: `false` `false` `true`
+
+<details><summary><b>Đáp án</b></summary>
+<p>
+
+#### Đáp án: A
+
+Vì `new Number()` là một hàm built-in Contructor của JavaScript. Trông nó có vẻ giống như là một số, nhưng thật sự không phải vậy nó là một Object với những thuộc tính được định nghĩa trong hàm `Number()`.
+
+Khi ta sử dụng phép toán so sánh `==`, thì nó đơn giản chỉ so sánh xem 2 biến có giá trị giống nhau, chúng đều có giá trị là 3, vậy nên phép toán sẽ trả ra giá trị `true`.
+
+Tuy nhiên, khi chúng ta sử dụng phép so sánh `===`, phép so sánh này yêu cầu cả giá trị và kiểu dữ liệu phải giống nhau. Ta có thể thấy, `new Number()`không phải là một số, nó là một Object. Nên cả hai phép toán còn lại đều trả ra `false`.
+
+</p>
+</details>
