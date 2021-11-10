@@ -502,7 +502,20 @@ const mixArrayVer02 = (arr) => {
   => Hãy viết một chương trình JavaScript để tính tổng của mỗi giá trị chỉ mục riêng lẻ từ các mảng đã cho.
   Output : [4, 5, 8, 10, 12, 13] --> (array1[0] + array2[0] = 4)
 */
-
+// Sử dụng với 2 mảng có độ dài bằng nhau
+const sumTwoArray = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  return arr1.map((item, index) => item + arr2[index]);
+};
+// Sử dụng với 2 mảng có độ dài khác nhau
+const twoArrayDiffLength = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  let result = [];
+  for (let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
+    result.push((arr1[i] || 0) + (arr2[i] || 0));
+  }
+  return result;
+};
 /**
   25. Viết chương trình JavaScript để tìm các giá trị trùng lặp trong một mảng JavaScript.
 */
