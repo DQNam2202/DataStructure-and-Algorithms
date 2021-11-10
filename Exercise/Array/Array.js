@@ -457,11 +457,36 @@ const sumOfSquareVer02 = (arr) => {
 /**
   21. Viết chương trình JavaScript để tính tổng và tích của một mảng số nguyên
 */
-
+const sumAndProduct = (arr) => {
+  if (typeof arr !== "object") return null;
+  let sum = 0;
+  let product = 1;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    product *= arr[i];
+  }
+  return `Tổng: ${sum}, Tích: ${product}`;
+};
 /**
   22. Viết một chương trình JavaScript để xáo trộn một mảng
 */
-
+// Sử dụng Math.random()
+const mixArray = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.sort(() => 0.5 - Math.random());
+};
+// Sử dụng array
+const mixArrayVer02 = (arr) => {
+  if (typeof arr !== "object") return null;
+  let result = [];
+  while (arr.length > 0) {
+    let index = Math.floor(Math.random() * arr.length);
+    result.push(arr[index]);
+    // Exits Loop
+    arr.splice(index, 1);
+  }
+  return result;
+};
 /**
   23. Viết chương trình JavaScript để thực hiện tìm kiếm nhị phân
   Lưu ý: Thuật toán tìm kiếm nhị phân hoặc tìm kiếm nửa khoảng tìm vị trí của giá trị đầu vào được chỉ định trong một mảng được sắp xếp theo giá trị khóa.
@@ -469,7 +494,6 @@ const sumOfSquareVer02 = (arr) => {
     + binary_Search(items, 1) --> 0
     + binary_Search(items, 4) --> 3
 */
-
 /**
   24. Có hai mảng với các giá trị riêng lẻ
     + array1 = [1,0,2,3,4];
