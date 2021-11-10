@@ -494,6 +494,7 @@ const mixArrayVer02 = (arr) => {
     + binary_Search(items, 1) --> 0
     + binary_Search(items, 4) --> 3
 */
+
 /**
   24. Có hai mảng với các giá trị riêng lẻ
     + array1 = [1,0,2,3,4];
@@ -538,3 +539,34 @@ const mixArrayVer02 = (arr) => {
   Example:
     + remove_array_element([2, 5, 9, 6], 5) --> [2, 9, 6]
  */
+// Using Filter
+const remove_array_element = (arr, element) => {
+  if (typeof arr !== "object") return null;
+  return arr.filter((item) => item !== element);
+};
+// Using For
+const remove_array_elementVer02 = (arr, element) => {
+  if (typeof arr !== "object") return null;
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== element) result.push(arr[i]);
+  }
+  return result;
+};
+// Using For in
+const remove_array_elementVer03 = (arr, element) => {
+  if (typeof arr !== "object") return null;
+  let result = [];
+  let index = arr.indexOf(element) + "";
+  for (let idx in arr) {
+    if (idx !== index) result.push(arr[idx]);
+  }
+  return result;
+};
+// Using Splice
+const remove_array_elementVer04 = (arr, element) => {
+  if (typeof arr !== "object") return null;
+  let index = arr.findIndex((item) => item === element);
+  arr.splice(index, 1);
+  return arr;
+};
