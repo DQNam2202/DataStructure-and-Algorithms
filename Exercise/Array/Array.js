@@ -494,7 +494,21 @@ const mixArrayVer02 = (arr) => {
     + binary_Search(items, 1) --> 0
     + binary_Search(items, 4) --> 3
 */
-
+function binarySearch(arr, num) {
+  let start = 0;
+  let end = arr.length - 1;
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
+    if (arr[mid] === num) {
+      return mid;
+    } else if (num > arr[mid]) {
+      start = mid + 1;
+    } else if (num < arr[mid]) {
+      end = mid - 1;
+    }
+  }
+  return -1;
+}
 /**
   24. Có hai mảng với các giá trị riêng lẻ
     + array1 = [1,0,2,3,4];
