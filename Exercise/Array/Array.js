@@ -512,21 +512,26 @@ const mixArrayVer02 = (arr) => {
   Sample Data :
     + union([1, 2, 3], [100, 2, 1, 10]) --> [1, 2, 3, 10, 100]
 */
-
 /**
-  27. Write a JavaScript program to flatten a nested (any depth) array
+  27. Viết một chương trình JavaScript để làm phẳng một mảng lồng nhau (bất kỳ độ sâu nào)
   Example :
     + flatten([1, [2], [3, [[4]]],[5,6]]) --> [1, 2, 3, 4, 5, 6]
 */
 // Using Reduce
-
-// Using Filter
-
-// Using Recursion
-
+const flattenUsingReduce = (arr) => {
+  if (typeof arr !== "object") return null;
+  return arr.reduce((result, item) => {
+    if (typeof item === "object") {
+      return result.concat(flattenUsingReduce(item));
+    } else {
+      return result.concat(item);
+    }
+  }, []);
+};
 // Sử dụng Array.flat()
-
-// Sử dụng Pre-ES6
+const flattenUsingFlatr = (arr) => {
+  return typeof arr === "object" ? arr.flat(Infinity) : null;
+};
 /**
   28. Viết một hàm JavaScript để tìm sự khác biệt của hai mảng.
   Test Data :
