@@ -506,12 +506,61 @@ const mixArrayVer02 = (arr) => {
 /**
   25. Viết chương trình JavaScript để tìm các giá trị trùng lặp trong một mảng JavaScript.
 */
-
+// Using for
+const findDuplicate = (arr) => {
+  if (typeof arr !== "object") return null;
+  let result = {};
+  for (let i = 0; i < arr.length; i++) {
+    if (result[arr[i]] === undefined) {
+      result[arr[i]] = 1;
+    } else {
+      result[arr[i]] += 1;
+    }
+  }
+  return Object.keys(result).filter((item) => result[item] !== 1);
+};
+// Using reduce
+const findDuplicateVer02 = (arr) => {
+  if (typeof arr !== "object") return null;
+  const obj = arr.reduce((result, item) => {
+    if (!result[item]) {
+      result[item] = 1;
+    } else {
+      result[item] += 1;
+    }
+    return result;
+  }, {});
+  return Object.keys(obj).filter((item) => obj[item] > 1);
+};
 /**
   26. Viết một chương trình JavaScript để tính toán hợp nhất của hai mảng.
   Sample Data :
     + union([1, 2, 3], [100, 2, 1, 10]) --> [1, 2, 3, 10, 100]
 */
+// Using [...new Set(arr1.concat(arr2))]
+const union = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  return [...new Set([...arr1, ...arr2])].sort((a, b) => a - b);
+};
+// Using Filter
+const unionVer02 = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  const mergeArr = [...arr1, ...arr2];
+  return mergeArr
+    .filter((item, index) => mergeArr.indexOf(item) === index)
+    .sort((a, b) => a - b);
+};
+// Usinhg reduce
+const unionVer03 = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  const mergeArr = [...arr1, ...arr2];
+  return mergeArr
+    .reduce((result, item) => {
+      if (!result.includes(item)) result.push(item);
+      return result;
+    }, [])
+    .sort((a, b) => a - b);
+};
 /**
   27. Viết một chương trình JavaScript để làm phẳng một mảng lồng nhau (bất kỳ độ sâu nào)
   Example :
