@@ -534,6 +534,26 @@ const mixArrayVer02 = (arr) => {
     array2 = [2, 30, 1];
   + merge_array(array1, array2) --> [3, 2, 30, 1]
 */
+// Sử dụng Set
+const mergeArray = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  return [...new Set(arr1.concat(arr2))];
+};
+// Sử dụng filter
+const mergeArrayVer02 = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  return arr1
+    .concat(arr2)
+    .filter((item, index) => arr1.concat(arr2).indexOf(item) === index);
+};
+// Sử dụng reduce
+const mergeArrayVer03 = (arr1, arr2) => {
+  if (typeof arr1 !== "object" || typeof arr2 !== "object") return null;
+  return arr1.concat(arr2).reduce((acc, item) => {
+    if (!acc.includes(item)) acc.push(item);
+    return acc;
+  }, []);
+};
 /**
  * 30. Viết một hàm JavaScript để xóa một phần tử cụ thể khỏi một mảng.
   Example:
