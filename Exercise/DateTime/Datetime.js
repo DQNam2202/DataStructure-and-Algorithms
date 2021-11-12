@@ -32,6 +32,10 @@ const formatDateVer03 = (date) => {
   1: Viết chương trình nhập vào năm sinh in ra số tuổi - Mức độ dễ
   Example: myAge(birthYear)
 */
+const myAge = (birthYear) => {
+  const yearCurrent = new Date().getFullYear();
+  return yearCurrent - birthYear;
+};
 /**
   2: Viết chương trình đếm ngược thời gian theo từng giây. Dựa vào thời gian đầu vào.
   Example:
@@ -40,15 +44,28 @@ const formatDateVer03 = (date) => {
 */
 
 /**
-  3. Viết một hàm JavaScript để kiểm tra xem một 'đầu vào' có phải là một đối tượng ngày tháng hay không.
+  3. Viết một hàm JavaScript để kiểm tra xem một 'đầu vào' có phải là một //! đối tượng ngày tháng hay không.
   Test Data :
     + console.log(is_date("October 13, 2014 11:13:00"));
     + console.log(is_date(new Date(86400000)));
     + console.log(is_date(new Date(99,5,24,11,33,30,0)));
     + console.log(is_date([1, 2, 4, 0]));
   Output : false | true | true | false
+  //? Hint: [object Date]: Object.prototype.toString.call(new Date())
 */
-
+//! Check Validation DateTime
+const is_date = (date) => {
+  return Date.parse(date) !== NaN ? true : false;
+};
+const is_dateVer02 = (date) => {
+  return date instanceof Date;
+};
+//! Check Datime Using Object.properties
+const is_dateVer03 = (date) => {
+  return Object.prototype.toString.call(date) === "[object Date]"
+    ? true
+    : false;
+};
 /**
   4. Viết một hàm JavaScript để lấy ngày hiện tại.Lưu ý: Chuyển dấu phân tách làm đối số.
   Test Data :
