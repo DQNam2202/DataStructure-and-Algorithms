@@ -1,8 +1,37 @@
+// Tip-Strick: chuyển đổi định dạng ngày tháng năm sang kiểu VietNam: now.toLocaleDateString('vi-VN')
+// 0. Format date: dd/mm/yyyy -> nếu tháng và ngày nhỏ hơn 10 thì phải để trước một chữ số như 01/01/2020
+// Version 01:
+const formatDate = (date) => {
+  const now = new Date(date);
+  const day = now.getDate();
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  const prefixMonth = month < 10 ? "0" : "";
+  const prefixDay = day < 10 ? "0" : "";
+  return `${prefixDay}${day}/${prefixMonth}${month}/${year}`;
+};
+// Version 02: Sử dụng cách viết gọn lại prefixMonth, prefixDay để giảm số lần viết của các biến
+const formatDateVer02 = (date) => {
+  const now = new Date(date);
+  const day = now.getDate();
+  const month = now.getMonth() + 1;
+  const year = now.getFullYear();
+  return `${day < 10 ? `0${day}` : day}/${
+    month < 10 ? `0${month}` : month
+  }/${year}`;
+};
+// Version 03: Using Array
+const formatDateVer03 = (date) => {
+  const now = new Date(date).toLocaleDateString("vi-VN");
+  const arrDate = now.split("/");
+  return `${arrDate[0] < 10 ? `0${arrDate[0]}` : arrDate[0]}/${
+    arrDate[1] < 10 ? `0${arrDate[1]}` : arrDate[1]
+  }/${arrDate[2]}`;
+};
 /**
   1: Viết chương trình nhập vào năm sinh in ra số tuổi - Mức độ dễ
   Example: myAge(birthYear)
 */
-
 /**
   2: Viết chương trình đếm ngược thời gian theo từng giây. Dựa vào thời gian đầu vào.
   Example:
