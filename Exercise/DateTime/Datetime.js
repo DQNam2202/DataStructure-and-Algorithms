@@ -97,7 +97,7 @@ const is_dateVer03 = (date) => {
     : false;
 };
 /**
-  4. Viết một hàm JavaScript để lấy ngày hiện tại.Lưu ý: Chuyển dấu phân tách làm đối số.
+  4. Viết một hàm JavaScript để lấy ngày hiện tại.Lưu ý: Move the number of paroit.
   Test Data :
     + console.log(curday('/'));
     + console.log(curday('-'));
@@ -130,8 +130,15 @@ const curdayVer03 = (separator) => {
     + console.log(getDaysInMonth(9, 2012));
     + console.log(getDaysInMonth(12, 2012));
   Output : 31 | 29 | 30 | 31
+  //? Hint: new Date(year, month, 0).getDate() -> lấy được ngày của tháng
+  //* Example: new Date(2012, 1, 0).getDate() => 31 -> tháng 12 năm 2011
 */
-
+const getDaysInMonth = (month, year) => {
+  if (typeof month !== "number" || typeof year !== "number")
+    return "Invalid Input";
+  return new Date(year, month, 0).getDate();
+};
+console.log(getDaysInMonth(1, 2012));
 /**
   6. Viết một hàm JavaScript để lấy tên tháng từ một ngày cụ thể
   Test Data :
@@ -139,7 +146,24 @@ const curdayVer03 = (separator) => {
     + console.log(month_name(new Date("11/13/2014")));
   Output : "October" | "November"
 */
-
+const month_name = (date) => {
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  return month[new Date(date).getMonth()];
+};
+console.log(month_name("02/11/2009"));
 /**
   7. Viết một hàm JavaScript để so sánh ngày (tức là lớn hơn, nhỏ hơn hoặc bằng).
   Test Data :
@@ -155,7 +179,21 @@ const curdayVer03 = (separator) => {
     + console.log(add_minutes(new Date(2014,10,2), 30).toString());
   Output : "Sun Nov 02 2014 00:30:00 GMT+0530 (India Standard Time)"
 */
-
+//! Using Date.setMinutes
+const add_minutes = (date, minutes) => {
+  if (typeof date !== "object" || typeof minutes !== "number")
+    return "Invalid Input";
+  return new Date(date.setMinutes(minutes)).toString();
+};
+//! Using minutes * 60*1000
+const add_minutesVer02 = (date, minutes) => {
+  const MINUTES_PER_MILISECONDS = 60000;
+  if (typeof date !== "object" || typeof minutes !== "number")
+    return "Invalid Input";
+  return new Date(
+    date.getTime() + minutes * MINUTES_PER_MILISECONDS
+  ).toString();
+};
 /**
   9. Viết một hàm JavaScript để kiểm tra xem một ngày có phải là ngày cuối tuần hay không.
   -> Lưu ý: Sử dụng định nghĩa tiêu chuẩn vào Thứ Bảy / Chủ Nhật cho một ngày cuối tuần.
