@@ -41,8 +41,35 @@ const myAge = (birthYear) => {
   Example:
     + Thời gian làm bài là 30 phút nếu chạy về 0 thì thông báo hết thời gian
     + countDown(myTime)
+  //?: setTimeout(function(){}, 1000) => thực hiện chức năng nào đó sau khoảng thời gian nhất định, sau bao lâu thì xuất hiện
+  // TODO: Ứng dụng xuất hiện quảng trong website
+  //?: setInterval(function(){}, 1000) => Thực hiện chức năng liên tục, chạy liên tục (tốn tài nguyên CPU) -> Sử dụng clearInterval() để dừng chạy
+  // TODO: Ứng dụng đồng hồ bấm giờ, hay events nào đó sau bao lâu sẽ kết thúc
 */
-
+const countDown = (time) => {
+  const interval = setInterval(function () {
+    if (time === 0) {
+      clearInterval(interval);
+      console.log("Time Up");
+    }
+    console.log(time);
+    time--;
+  }, 1000);
+};
+// CountDown Ver02
+const countDownVer02 = (date) => {
+  const SECOND = 60;
+  const timer = date * SECOND;
+  let counter = 0;
+  const interval = setInterval(() => {
+    counter++;
+    console.log(counter);
+    if (counter === timer) {
+      clearInterval(interval);
+      console.log("Time Up");
+    }
+  }, 1000);
+};
 /**
   3. Viết một hàm JavaScript để kiểm tra xem một 'đầu vào' có phải là một //! đối tượng ngày tháng hay không.
   Test Data :
@@ -52,11 +79,14 @@ const myAge = (birthYear) => {
     + console.log(is_date([1, 2, 4, 0]));
   Output : false | true | true | false
   //? Hint: [object Date]: Object.prototype.toString.call(new Date())
+  //? Hint: [object Array]: Object.prototype.toString.call([1,2,3])
+  //? Hint: [object String]: Object.prototype.toString.call('string')
 */
 //! Check Validation DateTime
 const is_date = (date) => {
   return Date.parse(date) !== NaN ? true : false;
 };
+//! Check Validation DateTime using instanceof
 const is_dateVer02 = (date) => {
   return date instanceof Date;
 };
