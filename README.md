@@ -178,3 +178,31 @@ Tuy nhiên, khi chúng ta sử dụng phép so sánh `===`, phép so sánh này 
 
 </p>
 </details>
+
+---
+
+###### 6. Output là gì?
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+sum(5, "2");
+```
+
+- A: `7`
+- B: `TypeError`
+- C: `52`
+- D: `NaN`
+
+<details><summary><b>Đáp án</b></summary>
+<p>
+
+#### Đáp án: C
+
+JavaScript là một ngôn ngữ `dynamically typed`: chúng ta không khai báo kiểu dữ liệu khi khai báo biến. thì giá trị đó có thể tự động convert sang một kiểu dữ liệu khác mà ta không hề hay biết, điều này được gọi là `implicit type coercion`. `Coercion` có nghĩa là convert từ kiểu này sang kiểu khác.
+
+Trong trường hợp này thì Javascripts sẽ tự động convert số `5` sang dạng string. Trong Javascripts khi ta cộng một một số (`5`) với một chuỗi (`"2"`), số đó sẽ luôn là một string. Kết quả là một phép nối chuỗi. Vậy nên suy ra `"5" + "2"` sẽ trả về là `"52"`.
+
+</p>
+</details>
