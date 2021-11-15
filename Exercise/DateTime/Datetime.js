@@ -103,7 +103,25 @@ const is_dateVer03 = (date) => {
     + console.log(curday('-'));
   Output : "11/13/2014" | "11-13-2014"
 */
-
+//! Version01: Using split and join
+const curday = (separator) => {
+  if (separator === undefined) separator = "/";
+  const dateNow = new Date().toLocaleDateString("vi-VN");
+  return dateNow.split("/").join(separator);
+};
+//! Version02: Using Resgex
+const curdayVer02 = (separator) => {
+  if (separator === undefined) separator = "/";
+  const dateNow = new Date().toLocaleDateString("vi-VN");
+  return dateNow.replace(/\//g, separator);
+};
+//! Version03: Using String.Array
+const curdayVer03 = (separator) => {
+  if (separator === undefined) separator = "/";
+  const dateNow = new Date().toLocaleDateString("vi-VN");
+  const arrTimer = dateNow.split("/");
+  return `${arrTimer[0]}${separator}${arrTimer[1]}${separator}${arrTimer[2]}`;
+};
 /**
   5. Viết một hàm JavaScript để lấy số ngày trong tháng.
   Test Data :
