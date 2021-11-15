@@ -206,3 +206,39 @@ Trong trường hợp này thì Javascripts sẽ tự động convert số `5` s
 
 </p>
 </details>
+
+---
+
+###### 7. Output là gì?
+
+```javascript
+let number = 2;
+console.log(number++);
+console.log(++number);
+console.log(number);
+```
+
+- A: `2` `4` `4`
+- B: `3` `3` `4`
+- C: `2` `3` `3`
+- D: `3` `3` `4`
+
+<details><summary><b>Đáp án</b></summary>
+<p>
+
+#### Đáp án: A
+
+Khi phép toán `++` nằm ở **đằng sau**: `return` first => then `increase`
+
+1. Trả về giá trị (trả về `2`)
+2. Tăng giá trị lên (number giờ là `3`)
+
+Khi phép toán `++` nằm ở **đằng trước**: `increase` first => then `return`
+
+1. Tăng giá trị lên (number giờ là `4`)
+2. Trả về giá trị (trả về `4`)
+
+Vậy kết quả là `2 4 4`.
+
+</p>
+</details>
