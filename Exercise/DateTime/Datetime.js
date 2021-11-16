@@ -235,7 +235,21 @@ const is_weekendVer02 = (date) => {
     + console.log(date_diff_indays('12/02/2014', '11/04/2014'));
   Output : 216 | -28
 */
-
+const date_diff_indays = (date1, date2) => {
+  //? Convert date to miliseconds
+  const timer1 = Date.parse(date1);
+  const timer2 = Date.parse(date2);
+  return Math.round((timer2 - timer1) / (1000 * 60 * 60 * 24));
+};
+//! không muốn lấy khoảng cách âm giữ hai khoảng thời gian
+const date_diff_indaysVer02 = (date1, date2) => {
+  //? Convert date to miliseconds
+  const timer1 = new Date(date1).getTime();
+  const timer2 = new Date(date2).getTime();
+  const PER_DAY = 8.64e7; // (1000 * 60 * 60 * 24) = 86.400.000
+  return Math.round(Math.abs((timer1 - timer2) / PER_DAY));
+};
+//
 /**
   11. Viết một hàm JavaScript để xem ngày cuối cùng của tháng.
   Test Data :
