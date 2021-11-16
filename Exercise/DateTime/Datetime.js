@@ -291,14 +291,37 @@ const yesterdayVer02 = (date) => {
     console.log(min_date(['2015/02/01', '2015/02/02', '2015/01/03']));
   Output : "2015/01/03"
 */
-
+//? Tái sử dụng cho các hàm bên dưới
+const formatDates = (date) => {
+  const now = new Date(date).toLocaleDateString("vi-VN");
+  const arrDate = now.split("/");
+  return `${arrDate[2]}/${arrDate[1] < 10 ? `0${arrDate[1]}` : arrDate[1]}/${
+    arrDate[0] < 10 ? `0${arrDate[0]}` : arrDate[0]
+  }`;
+};
+//! Version 01: Using Array()
+const min_date = (dates) => {
+  if (Array.isArray(dates) === false) return "Invalid Input";
+  const newArrDate = [];
+  for (let item of dates) {
+    newArrDate.push(new Date(item).getTime());
+  }
+  return formatDates(new Date(Math.min(...newArrDate)));
+};
+//! Version 02: Using Map()
+const min_dateVer02 = (dates) => {
+  return Array.isArray(dates) === false
+    ? "Invalid Input"
+    : formatDates(
+        dates.map((item) => new Date(item).getTime()).sort((a, b) => a - b)[0]
+      );
+};
 /**
   14. Viết một hàm JavaScript sẽ trả về số phút theo giờ và phút
   Test Data :
     console.log(timeConvert(200));
   Output : "200 minutes = 3 hour(s) and 20 minute(s)."
-*/
-
+*
 /**
   15. Viết một hàm JavaScript để lấy số ngày trong năm.
   Test Data :
