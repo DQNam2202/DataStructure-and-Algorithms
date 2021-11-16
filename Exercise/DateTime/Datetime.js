@@ -321,7 +321,14 @@ const min_dateVer02 = (dates) => {
   Test Data :
     console.log(timeConvert(200));
   Output : "200 minutes = 3 hour(s) and 20 minute(s)."
-*
+*/
+const timeConvert = (minutes) => {
+  if (typeof minutes !== "number") return "Invalid Input";
+  ``;
+  const hour = Math.floor(minutes / 60);
+  const minute = minutes % 60;
+  return `${minutes} minutes = ${hour} hour(s) and ${minute} minute(s).`;
+};
 /**
   15. Viết một hàm JavaScript để lấy số ngày trong năm.
   Test Data :
