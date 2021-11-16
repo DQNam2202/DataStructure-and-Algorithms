@@ -138,7 +138,7 @@ const getDaysInMonth = (month, year) => {
     return "Invalid Input";
   return new Date(year, month, 0).getDate();
 };
-console.log(getDaysInMonth(1, 2012));
+
 /**
   6. Viết một hàm JavaScript để lấy tên tháng từ một ngày cụ thể
   Test Data :
@@ -163,7 +163,7 @@ const month_name = (date) => {
   ];
   return month[new Date(date).getMonth()];
 };
-console.log(month_name("02/11/2009"));
+
 /**
   7. Viết một hàm JavaScript để so sánh ngày (tức là lớn hơn, nhỏ hơn hoặc bằng).
   Test Data :
@@ -172,7 +172,23 @@ console.log(month_name("02/11/2009"));
     + console.log(compare_dates(new Date('11/14/2013 00:00'), new Date('11/14/2013 00:01')));
   Output : "Date1 = Date2" | "Date1 > Date2" | "Date2 > Date1"
 */
-
+//! Version01: Using Date.getTime() || Date.parse()
+const compare_dates = (date1, date2) => {
+  const timer1 = Date.parse(date1);
+  const timer2 = Date.parse(date2);
+  if (timer1 === timer2) return "Date1 = Date2";
+  if (timer1 > timer2) return "Date1 > Date2";
+  return "Date2 > Date1";
+};
+// Version 02
+const compare_datesVer02 = (date1, date2) => {
+  if (date1 > date2) {
+    return "Date1 > Date2";
+  } else if (date1 < date2) {
+    return "Date2 > Date1";
+  }
+  return "Date1 = Date2";
+};
 /**
   8. Viết một hàm JavaScript để thêm số phút đã chỉ định vào đối tượng Ngày.
   Test Data :
