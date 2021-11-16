@@ -219,7 +219,15 @@ const add_minutesVer02 = (date, minutes) => {
     + console.log(is_weekend('Nov 17, 2014'));
   Output : "weekend" | "weekend" | undefined
 */
-
+const is_weekend = (date) => {
+  const day = new Date(date).getDay();
+  return day === 0 || day === 6 ? "weekend" : undefined;
+};
+//! Using Math
+const is_weekendVer02 = (date) => {
+  const day = new Date(date).getDay();
+  return day % 6 === 0 ? "weekend" : undefined;
+};
 /**
   10. Viết một hàm JavaScript để nhận được sự khác biệt giữa hai ngày trong ngày.
   Test Data :
