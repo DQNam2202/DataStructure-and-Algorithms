@@ -249,16 +249,20 @@ const date_diff_indaysVer02 = (date1, date2) => {
   const PER_DAY = 8.64e7; // (1000 * 60 * 60 * 24) = 86.400.000
   return Math.round(Math.abs((timer1 - timer2) / PER_DAY));
 };
-//
+
 /**
   11. Viết một hàm JavaScript để xem ngày cuối cùng của tháng.
   Test Data :
-    + console.log(lastday(2014,0));
-    + console.log(lastday(2014,1));
+    + console.log(lastday(2014,0)); // Tháng 1
+    + console.log(lastday(2014,1)); // Tháng 2
     + console.log(lastday(2014,11));
   Output : 31 |  28 |  31
 */
-
+const lastDay = (year, month) => {
+  if (typeof year !== "number" || typeof month !== "number")
+    return "Invalid Input";
+  return new Date(year, month + 1, 0).getDate();
+};
 /**
   12. Viết một hàm JavaScript để tính toán 'ngày hôm qua'
   Test Data :
@@ -270,7 +274,17 @@ const date_diff_indaysVer02 = (date1, date2) => {
     + "Sun Nov 15 2015 00:00:00 GMT+0530 (India Standard Time)"
     + "Wed Nov 16 2016 00:00:00 GMT+0530 (India Standard Time)"
 */
-
+//! Version 01: Using Date.setDate()
+const yesterday = (date) => {
+  const timer = new Date(date).getDate();
+  return new Date(new Date(date).setDate(timer - 1));
+};
+//! Version 02: Using getTime()
+const yesterdayVer02 = (date) => {
+  const timeDay = 86400;
+  const timer = new Date(date).getTime();
+  return new Date(new Date(timer - timeDay).setHours(0, 0, 0, 0));
+};
 /**
   13. Viết một hàm JavaScript để lấy ngày tối đa từ một mảng ngày tháng.
   Test Data :
