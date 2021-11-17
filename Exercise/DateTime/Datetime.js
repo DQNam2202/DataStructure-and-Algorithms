@@ -412,7 +412,16 @@ const days_passed = (date) => {
     d= new Date(2015, 10, 1) --> console.log(day_of_the_month(d));
   Ouput: "01"
 */
-
+const getDayInMonth = (year, month, day) => {
+  if (
+    typeof year !== "number" ||
+    typeof year !== "number" ||
+    typeof year !== "number"
+  )
+    return "Invalid Input";
+  const result = new Date(year, month, day).getDate();
+  return result < 10 ? `0${result}` : result + "";
+};
 /**
   19. Viết một hàm JavaScript để có được biểu diễn dạng văn bản của một ngày (ba chữ cái, từ Thứ Hai đến Chủ Nhật).
   Test Data :
