@@ -335,8 +335,25 @@ const timeConvert = (minutes) => {
     + console.log(days_of_a_year(2015));
     + console.log(days_of_a_year(2016));
   Output: 365 | 366
+  //? Hint:
+    + Năm nhuận là năm chia hết cho 400
+    + Năm nhuận là năm chia hết cho 4 nhưng không chia hết cho 100
+  //TODO: Trái đất của chúng ta cần 365.25 ngày để quay hết một vòng quanh mặt trời. Phần dư 0.25 thực ra đã làm tròn, con số thực tế là `365.2425` ngày để trái đất quay được một vòng. Giá trị sai số này 0.0075 ngày(0.25-0.2425) khi nhân với 400 chúng ta sẽ có thêm 3 ngày nữa. Do đó, để lịch của ta chính xác, các chu kỳ 100, 200 và 300 chỉ có 24 năm nhuận thay vì 25. Riêng chu kỳ thứ 400 sẽ có 25 năm nhuận. Điều đó đảm bảo rằng chu kỳ 400 năm sẽ có 97(24+24+24+25) năm nhuận. Như vậy, cứ 400 năm chúng ta sẽ có 97 năm nhuận, không phải 100 nhé.
 */
-
+//! Using Date.
+const days_of_a_year = (year) => {
+  if (typeof year !== "number") return "Invalid Input";
+  const timerNow = new Date(year, 0, 1).getTime();
+  const timeNext = new Date(year + 1, 0, 1).getTime();
+  const PER_DAY_YEAR = 8.64e7; // (1000 * 60 * 60 * 24) = 86.400.000
+  return Math.round((timeNext - timerNow) / PER_DAY_YEAR);
+};
+const days_of_a_yearVer02 = (year) => {
+  if (typeof year !== "number") return "Invalid Input";
+  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0) ? 366 : 365;
+};
+console.log(days_of_a_yearVer02(2015));
+console.log(days_of_a_yearVer02(2016));
 /**
   16. Viết một hàm JavaScript để lấy quý (1 đến 4) trong năm.
   Test Data :
