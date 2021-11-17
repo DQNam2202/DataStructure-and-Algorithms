@@ -286,7 +286,7 @@ const yesterdayVer02 = (date) => {
   return new Date(new Date(timer - timeDay).setHours(0, 0, 0, 0));
 };
 /**
-  13. Viết một hàm JavaScript để lấy ngày tối đa từ một mảng ngày tháng.
+  13. Viết một hàm JavaScript để lấy ngày nhỏ nhất từ một mảng ngày tháng.
   Test Data :
     console.log(min_date(['2015/02/01', '2015/02/02', '2015/01/03']));
   Output : "2015/01/03"
@@ -314,6 +314,24 @@ const min_dateVer02 = (dates) => {
     ? "Invalid Input"
     : formatDates(
         dates.map((item) => new Date(item).getTime()).sort((a, b) => a - b)[0]
+      );
+};
+// Find Min Day In Array
+//! Version 01: Using Array()
+const max_date = (dates) => {
+  if (Array.isArray(dates) === false) return "Invalid Input";
+  const newArrDate = [];
+  for (let item of dates) {
+    newArrDate.push(new Date(item).getTime());
+  }
+  return formatDates(new Date(Math.max(...newArrDate)));
+};
+//! Version 02: Using Map()
+const max_dateVer02 = (dates) => {
+  return Array.isArray(dates) === false
+    ? "Invalid Input"
+    : formatDates(
+        dates.map((item) => new Date(item).getTime()).sort((a, b) => b - a)[0]
       );
 };
 /**
@@ -381,7 +399,13 @@ const quarter_of_the_yearVer02 = (date) => {
     console.log(days_passed(new Date(2015, 11, 14)));
   Output: 15 | 348
 */
-
+const days_passed = (date) => {
+  const day = new Date(date);
+  const startDay = new Date(day.getFullYear(), 0, 0).getTime();
+  const endDay = date.getTime();
+  const PER_DAY_OF_YEAR = 8.64e7; // (1000 * 60 * 60 * 24) = 86.400.000
+  return Math.ceil((endDay - startDay) / PER_DAY_OF_YEAR);
+};
 /**
   18. Viết một hàm JavaScript để lấy ngày trong tháng, 2 chữ số với các số 0 ở đầu
   Test Data :
