@@ -242,3 +242,39 @@ Vậy kết quả là `2 4 4`.
 
 </p>
 </details>
+
+---
+
+###### 8. Output là gì?
+
+```javascript
+function checkAge(data) {
+  if (data === { age: 18 }) {
+    console.log("You can ride a motorcycle");
+  } else if (data == { age: 18 }) {
+    console.log("You can ride a car");
+  } else {
+    console.log(`Hmm.. You don't have an age I guess`);
+  }
+}
+checkAge({ age: 18 });
+```
+
+- A: `You can ride a motorcycle`
+- B: `You can ride a car`
+- C: `Hmm.. You don't have an age I guess`
+- D: `Undefine`
+
+<details><summary><b>Đáp án</b></summary>
+<p>
+
+#### Đáp án: C
+
+Trong Javascripts khi kiểm tra sự bằng nhau, các kiểu dữ liệu cơ bản sẽ so sánh giá trị của chúng, riêng `object` thì so sánh tham chiếu. JS sẽ kiểm tra xem các `object` có trỏ đến những vùng nhớ giống nhau hay không.
+
+Trong khi đó hai `object` chúng ta đang so sánh lại không thỏa điều kiện đó. object đối số tham chiếu đến một vùng nhớ khác với object chúng ta dùng để kiểm tra sự bằng nhau.
+
+Vậy nên kết quá trả về từ việc so sánh `{ age: 18 } === { age: 18 }` và `{ age: 18 } == { age: 18 }` sẽ là `false`.
+
+</p>
+</details>
