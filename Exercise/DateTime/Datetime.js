@@ -348,20 +348,32 @@ const days_of_a_year = (year) => {
   const PER_DAY_YEAR = 8.64e7; // (1000 * 60 * 60 * 24) = 86.400.000
   return Math.round((timeNext - timerNow) / PER_DAY_YEAR);
 };
+// Version02: Using Hint
 const days_of_a_yearVer02 = (year) => {
   if (typeof year !== "number") return "Invalid Input";
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0) ? 366 : 365;
 };
-console.log(days_of_a_yearVer02(2015));
-console.log(days_of_a_yearVer02(2016));
 /**
   16. Viết một hàm JavaScript để lấy quý (1 đến 4) trong năm.
   Test Data :
     + console.log(quarter_of_the_year(new Date(2015, 1, 21)));
     + console.log(quarter_of_the_year(new Date(2015, 10, 18)));
-  Output: 2 | 4
+  Output: 1 | 4
 */
-
+const quarter_of_the_year = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const month = date.getMonth();
+  return Math.ceil(month / 3);
+};
+//! Using: If/Else
+const quarter_of_the_yearVer02 = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const month = date.getMonth() + 1;
+  if (month <= 3) return 1;
+  if (month > 3 && month <= 6) return 2;
+  if (month > 6 && month <= 9) return 3;
+  return 4;
+};
 /**
   17. Viết một hàm JavaScript để đếm số ngày đã trôi qua kể từ đầu năm.
   Test Data :
