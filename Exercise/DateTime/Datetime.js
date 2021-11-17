@@ -568,7 +568,22 @@ const add_months = (date, months) => {
   => console.log(diff_minutes(dt1, dt2));
   Output:  2
 */
-
+//! Using getTime()
+const diff_minutes = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const timer01 = date1.getTime();
+  const timer02 = date2.getTime();
+  const PER_MINUTE = 60000;
+  return Math.round((timer02 - timer01) / PER_MINUTE);
+};
+//! Using getMinutes()
+const diff_minutesVer02 = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const minutes = date2.getMinutes() - date1.getMinutes();
+  return minutes;
+};
 /**
   27. Viết hàm JavaScript để nhận chênh lệch thời gian tính theo giờ giữa hai ngày.
   Test Data :
@@ -577,6 +592,22 @@ const add_months = (date, months) => {
   => console.log(diff_hours(dt1, dt2));
   Output:  3
 */
+//! Using getTime()
+const diff_hours = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const timer01 = date1.getTime();
+  const timer02 = date2.getTime();
+  const PER_HOUR = 3600000; //? 3600000 = 60 * 60 * 1000
+  return Math.round((timer02 - timer01) / PER_HOUR);
+};
+//! Using getHours()
+const diff_hoursVer02 = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const hours = date2.getHours() - date1.getHours();
+  return Math.abs(hours);
+};
 
 /**
   28. Viết hàm JavaScript để nhận chênh lệch thời gian giữa hai ngày.
