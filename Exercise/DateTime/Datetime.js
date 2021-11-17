@@ -477,28 +477,77 @@ const long_Days = (date) => {
     dt = new Date(2015, 10, 1) --> console.log(full_month(dt));
   Output: "November"
 */
-
+const full_month = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const array = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const month = date.getMonth();
+  return array[month];
+};
 /**
   22. Viết một hàm JavaScript để có được biểu diễn số của một tháng, với các số 0 ở đầu (01 đến 12).
   Test Data :
     dt = new Date(2015, 10, 1) --> console.log(numeric_month(dt));
   Ouput: "11"
 */
-
+//! Using date.getMonth()
+const numeric_month = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const month = date.getMonth() + 1;
+  return month < 10 ? `0${month}` : month + "";
+};
+//! Using Array
+const numeric_monthVer02 = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const arrayTimer = date.toLocaleDateString("vi-VI").split("/");
+  return arrayTimer[1] < 10 ? `0${arrayTimer[1]}` : arrayTimer[1];
+};
 /**
   23. Viết một hàm JavaScript để có được biểu diễn số đầy đủ của một năm (4 chữ số).
   Test Data :
     dt = new Date(2015, 10, 1) --> console.log(full_year(dt));
   Output:  2015
 */
-
+//! Using date.getFullYear()
+const full_year = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  return date.getFullYear();
+};
+//! Using Array
+const full_yearVer02 = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const arrayTimer = date.toLocaleDateString("vi-VI").split("/");
+  return arrayTimer[2];
+};
 /**
   24. Viết một hàm JavaScript để có được biểu diễn hai chữ số của một năm
   Test Data :
     dt = new Date(1989, 10, 1) --> console.log(sort_year(dt));
   Output:  "89"
 */
-
+//! Using date.getFullYear()
+const sort_year = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  return date.getFullYear().toString().substring(2);
+};
+//! Using Array
+const sort_yearVer02 = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const arrayTimer = date.toLocaleDateString("vi-VI").split("/");
+  return arrayTimer[2].substring(2);
+};
 /**
   25. Viết một hàm JavaScript để thêm các tháng cụ thể vào một ngày.
   Test Data :
