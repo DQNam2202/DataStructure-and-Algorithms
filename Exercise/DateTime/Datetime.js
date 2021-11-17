@@ -617,7 +617,22 @@ const diff_hoursVer02 = (date1, date2) => {
   => console.log(diff_days(dt1, dt2));
   Output:  6
 */
-
+//! Using getTime()
+const diff_days = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const timer01 = date1.getTime();
+  const timer02 = date2.getTime();
+  const PER_DAY = 86400000; //? 86400000 = 24 * 60 * 60 * 1000
+  return Math.round((timer02 - timer01) / PER_DAY);
+};
+//! Using getDate()
+const diff_daysVer02 = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const days = date2.getDate() - date1.getDate();
+  return Math.abs(days);
+};
 /**
   29. Viết một hàm JavaScript để nhận được sự khác biệt về thời gian theo tuần giữa hai ngày
   Test Data :
@@ -626,6 +641,15 @@ const diff_hoursVer02 = (date1, date2) => {
   => console.log(diff_weeks(dt1, dt2));
   Output:  18
 */
+//! Using getTime()
+const diff_weeks = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const PER_WEEK = 604800000; //? 604800000 = 7 * 24 * 60 * 60 * 1000
+  const timer01 = date1.getTime();
+  const timer02 = date2.getTime();
+  return Math.round((timer02 - timer01) / PER_WEEK);
+};
 
 /**
   30. Viết một hàm JavaScript để nhận được sự khác biệt về thời gian trong các tháng giữa hai ngày.
@@ -635,7 +659,14 @@ const diff_hoursVer02 = (date1, date2) => {
   =>  console.log(diff_months(dt1, dt2));
   Output:  5
 */
-
+const diff_months = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  const PER_MONTH = 2419200000; //? 2419200000 = 4 * 7 * 24 * 60 * 60 * 1000
+  const timer01 = date1.getTime();
+  const timer02 = date2.getTime();
+  return Math.round((timer02 - timer01) / PER_MONTH);
+};
 /**
   31. Viết một hàm JavaScript để nhận được sự khác biệt về thời gian theo năm giữa hai ngày
   Test Data :
@@ -643,8 +674,17 @@ const diff_hoursVer02 = (date1, date2) => {
     dt2 = new Date("October 19, 2017 11:13:00");
   => console.log(diff_years(dt1, dt2));
   Output:  3
+  //TODO: Trái đất của chúng ta cần 365.25 ngày để quay hết một vòng quanh mặt trời. Phần dư 0.25 thực ra đã làm tròn, con số thực tế là `365.2425` ngày để trái đất quay được một vòng. Giá trị sai số này 0.0075 ngày(0.25-0.2425) khi nhân với 400 chúng ta sẽ có thêm 3 ngày nữa. Do đó, để lịch của ta chính xác, các chu kỳ 100, 200 và 300 chỉ có 24 năm nhuận thay vì 25. Riêng chu kỳ thứ 400 sẽ có 25 năm nhuận. Điều đó đảm bảo rằng chu kỳ 400 năm sẽ có 97(24+24+24+25) năm nhuận. Như vậy, cứ 400 năm chúng ta sẽ có 97 năm nhuận, không phải 100 nhé.
 */
-
+const diff_years = (date1, date2) => {
+  if (typeof date1 !== "object" || typeof date2 !== "object")
+    return "Invalid Input";
+  //TODO: Đọc gợi ý ở phần mô tả để bk sao là đc 365.25
+  const PER_YEAR = 31557600000; //? 31557600000 = 365.25* 24 * 60 * 60 * 1000
+  const timer01 = date1.getTime();
+  const timer02 = date2.getTime();
+  return Math.round((timer02 - timer01) / PER_YEAR);
+};
 /**
   32. Viết một hàm JavaScript để lấy ngày bắt đầu của tuần.
  */
