@@ -278,3 +278,29 @@ Vậy nên kết quá trả về từ việc so sánh `{ age: 18 } === { age: 18
 
 </p>
 </details>
+
+---
+
+###### 9. Output là gì?
+
+```javascript
+const sum = eval("10*10+5*5");
+```
+
+- A: `125`
+- B: `NaN`
+- C: `"125"`
+- D: `"10*10+5*5"`
+
+<details><summary><b>Đáp án</b></summary>
+<p>
+
+#### Đáp án: A
+
+Giới thiệu về `eval(String)`: eval () là hàm đánh giá mã JavaScript được biểu diễn dưới dạng một chuỗi.
+`String`được hiểu ở đây là một chuỗi đại diện cho một biểu thức JavaScript, câu lệnh hoặc chuỗi câu lệnh. Biểu thức có thể bao gồm các biến và thuộc tính của các đối tượng hiện có.
+
+Trong trường hợp bài toán trên, `eval()` sẽ đánh giá biểu thức bên trong chuỗi. Nếu nó là một biểu thức, thì nó sẽ tính toán giá trị đó `10 * 10 + 5 * 5` và trả ra kết quả là `125`
+
+</p>
+</details>
