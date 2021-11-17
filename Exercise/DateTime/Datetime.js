@@ -554,7 +554,12 @@ const sort_yearVer02 = (date) => {
     dt = new Date(2014,10,2) --> console.log(add_months(dt, 10).toString());
   Output : "Wed Sep 02 2015 00:00:00 GMT+0530 (India Standard Time)"
 */
-
+const add_months = (date, months) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const newDate = new Date(date);
+  newDate.setMonth(newDate.getMonth() + months);
+  return newDate;
+};
 /**
   26. Viết một hàm JavaScript để nhận chênh lệch thời gian tính bằng phút giữa hai ngày.
   Test Data :
