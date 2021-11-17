@@ -428,13 +428,48 @@ const getDayInMonth = (year, month, day) => {
     dt = new Date(2015, 10, 1) --> console.log(short_Days(dt));
   Ouput: "Sun"
 */
-
+const arrayDay = () => {
+  let newDayArr = [];
+  const array = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  for (let item of array) {
+    newDayArr.push(item.substring(0, 3));
+  }
+  return newDayArr;
+};
+const short_Days = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const day = date.getDay();
+  const arrDays = arrayDay();
+  return arrDays[day];
+};
 /**
   20. Viết một hàm JavaScript để có được biểu diễn văn bản đầy đủ của ngày trong tuần (Chủ nhật đến Thứ bảy).
   Test Data :
     dt = new Date(2015, 10, 1) --> console.log(long_Days(dt));
   Output:  "Sunday"
 */
+const long_Days = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const array = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const day = date.getDay();
+  return array[day];
+};
 
 /**
   21. Viết một hàm JavaScript để có được biểu diễn văn bản đầy đủ của một tháng, chẳng hạn như tháng Giêng hoặc tháng Sáu.
