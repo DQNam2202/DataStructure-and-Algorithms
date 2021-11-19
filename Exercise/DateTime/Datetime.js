@@ -688,11 +688,29 @@ const diff_years = (date1, date2) => {
 /**
   32. Viết một hàm JavaScript để lấy ngày bắt đầu của tuần.
  */
-
+const startOfWeek = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+  return new Date(date.setDate(diff));
+};
 /**
   33. Viết một hàm JavaScript để lấy ngày kết thúc tuần
  */
-
+const endOfWeek = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  const dayNextWeek = new Date(date.setDate(date.getDate() + 7)).getDate();
+  const lastDayOfWeek =
+    new Date(new Date().setDate(dayNextWeek)).getDate() -
+    new Date(new Date().setDate(dayNextWeek)).getDay() +
+    (new Date(new Date().setDate(dayNextWeek)).getDay() === 0 ? -7 : 0);
+  return new Date(new Date().setDate(lastDayOfWeek));
+};
+// Version 02:
+//! Tìm số ngày để lùi về được đầu tuần: date.getDay() - 1
+const endOfWeekVer02 = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  return new Date(date.setDate(date.getDate() - (date.getDay() - 1) + 6));
+};
 /**
   34. Viết một hàm JavaScript để lấy ngày bắt đầu của tháng.
  */
