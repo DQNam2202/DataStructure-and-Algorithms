@@ -714,11 +714,17 @@ const endOfWeekVer02 = (date) => {
 /**
   34. Viết một hàm JavaScript để lấy ngày bắt đầu của tháng.
  */
-
+const startOfMonth = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  return new Date(date.setDate(1));
+};
 /**
   35. Viết một hàm JavaScript để lấy ngày kết thúc tháng.
  */
-
+const endOfMonth = (date) => {
+  if (typeof date !== "object") return "Invalid Input";
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+};
 /**
   36. Viết chương trình có tên là time since, đầu vòa là thời gian và tính thời gian đầu vào so với thời gian hiện tại
   Example: timeSince(time)
