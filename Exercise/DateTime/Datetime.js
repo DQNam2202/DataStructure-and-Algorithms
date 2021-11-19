@@ -736,3 +736,43 @@ const endOfMonth = (date) => {
       + '30 giây trước',
       + '1 năm trước'
 */
+const timeSince = (time) => {
+  const years = 31557600,
+    months = 2419200,
+    weeks = 345600,
+    days = 86400,
+    hours = 3600,
+    minutes = 60;
+  // get current time
+  let now = new Date().getTime();
+  // get remaining time
+  let getRemainingTime = new Date(time).getTime();
+  // Khoảng thời gian giữa 2 giai đoạn
+  let gap = now - getRemainingTime;
+  let seconds = Math.floor(gap / 1000);
+  let timer = seconds / years;
+  if (timer > 1) {
+    return `${Math.floor(seconds / years)} năm trước`;
+  }
+  timer = seconds / months;
+  if (timer > 1) {
+    return `${Math.floor(seconds / months)} tháng trước`;
+  }
+  timer = seconds / weeks;
+  if (timer > 1) {
+    return `${Math.floor(seconds / weeks)} tuần trước`;
+  }
+  timer = seconds / days;
+  if (timer > 1) {
+    return `${Math.floor(seconds / days)} ngày trước`;
+  }
+  timer = seconds / hours;
+  if (timer > 1) {
+    return `${Math.floor(seconds / hours)} giờ trước`;
+  }
+  timer = seconds / minutes;
+  if (timer > 1) {
+    return `${Math.floor(seconds / minutes)} phút trước`;
+  }
+  return timer;
+};
