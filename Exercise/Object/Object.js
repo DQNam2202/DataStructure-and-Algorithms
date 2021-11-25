@@ -1,3 +1,16 @@
+// Hàm kiểm tra Object là
+const isObject = (obj) => {
+  if (typeof obj === "object" && !Array.isArray(obj) && obj !== null)
+    return true;
+  return false;
+};
+
+// Object Student
+let student = {
+  name: "David Rayy",
+  sclass: "VI",
+  rollno: 12,
+};
 /**
   1: Viết chương trình JavaScript để liệt kê các thuộc tính của một đối tượng JavaScript.
   Sample object:
@@ -8,7 +21,11 @@
     };
   Output: name,sclass,rollno
 */
-
+const getKeysObject = (obj) => {
+  if (!isObject(obj)) return "";
+  let keys = Object.keys(obj);
+  return keys.join(",");
+};
 /**
   2. Viết chương trình JavaScript để xóa thuộc tính rollno khỏi đối tượng sau. Đồng thời in đối tượng trước hoặc sau khi xóa thuộc tính.
   Sample object:
@@ -19,6 +36,15 @@
     };
 */
 
+const deleteKeyObject = (obj, ...keys) => {
+  if (!isObject(obj)) return "";
+  const cloneObj = { ...obj };
+  keys.forEach((item) => {
+    if (cloneObj.hasOwnProperty(item)) delete cloneObj[item];
+  });
+  return cloneObj;
+};
+console.log(deleteKeyObject(student, "rollno"));
 /**
   3. Viết chương trình JavaScript để lấy độ dài của một đối tượng JavaScript
   Sample object :
@@ -28,7 +54,11 @@
       rollno : 12
     };
  */
-
+const getLengthObject = (obj) => {
+  if (!isObject(obj)) return "";
+  return Object.keys(obj).length;
+};
+console.log(getLengthObject(student));
 /**
   4. Viết chương trình JavaScript để hiển thị trạng thái đọc (nghĩa là hiển thị tên sách, tên tác giả và trạng thái đọc) của những cuốn sách sau
   Sample object :
