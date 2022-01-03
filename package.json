@@ -1,0 +1,28 @@
+{
+  "name": "datastructure-and-algorithms",
+  "version": "1.0.0",
+  "description": "Các câu hỏi sẽ từ cơ bản đến nâng cao: kiểm tra trình độ JavaScript của bạn, làm mới một chút về kiến thức, hay chuẩn bị cho cuộc phỏng vấn về Javascripts !",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DQNam2202/DataStructure-and-Algorithms.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Duong Nam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DQNam2202/DataStructure-and-Algorithms/issues"
+  },
+  "homepage": "https://github.com/DQNam2202/DataStructure-and-Algorithms#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "babel-jest": "^27.4.5",
+    "jest": "^27.4.5"
+  }
+}
