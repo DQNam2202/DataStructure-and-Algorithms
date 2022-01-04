@@ -7,3 +7,4 @@ export const additionV1 = (a, b) => {
   if (typeof a !== "number" || typeof b !== "number") return "Invalid number";
   return a + b;
 };
+console.log(additionV1());
