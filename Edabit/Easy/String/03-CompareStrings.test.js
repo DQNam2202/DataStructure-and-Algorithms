@@ -1,4 +1,4 @@
-import { comp } from "./20-CompareStrings";
+import { comp } from "./03-CompareStrings";
 describe("comp()", () => {
   it("should return false when a and b is not a string", () => {
     expect(comp(1, 2)).toBe(false);
