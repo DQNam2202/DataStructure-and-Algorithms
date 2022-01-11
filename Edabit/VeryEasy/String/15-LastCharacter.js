@@ -12,3 +12,8 @@ export const isLastCharacterN = (str) => {
   return str.trim().endsWith("n");
 };
 // Version 02: Using lastIndexOf - str.split()
+export const isLastCharacterNVer2 = (str) => {
+  if (typeof str !== "string" || str.length === 0) return "Invalid input";
+  const wordList = str.trim().split("");
+  return wordList.lastIndexOf("n") === wordList.length - 1 ? true : false;
+};
