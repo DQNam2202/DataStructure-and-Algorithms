@@ -16,10 +16,40 @@ export const detectWordV1 = (str) => {
   let detectList = [...wordList].filter((item) => item === item.toLowerCase());
   return detectList.join("");
 };
-// Using map
-
 // Using for...of
-
+export const detectWordV2 = (str) => {
+  if (typeof str !== "string" || str.length === 0) return "Invalid input";
+  let wordList = str.trim().split("");
+  let newWords = [];
+  for (let item of wordList) {
+    if (item === item.toLowerCase()) {
+      newWords.push(item);
+    }
+  }
+  return newWords.join("");
+};
 // Using for
-
+export const detectWordV3 = (str) => {
+  if (typeof str !== "string" || str.length === 0) return "Invalid input";
+  let wordList = str.trim().split("");
+  let newWords = [];
+  for (let i = 0; i < wordList.length; i++) {
+    const ele = wordList[i];
+    if (ele === ele.toLowerCase()) {
+      newWords.push(ele);
+    }
+  }
+  return newWords.join("");
+};
 // Using forEach
+export const detectWordV4 = (str) => {
+  if (typeof str !== "string" || str.length === 0) return "Invalid input";
+  let wordList = str.trim().split("");
+  let newWords = [];
+  [...wordList].forEach((item) => {
+    if (item === item.toLowerCase()) {
+      newWords.push(item);
+    }
+  });
+  return newWords.join("");
+};
