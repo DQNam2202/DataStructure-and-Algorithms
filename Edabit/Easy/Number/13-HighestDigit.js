@@ -14,3 +14,23 @@ export const highestDigit = (numb) => {
     .sort((a, b) => (a > b ? 1 : -1));
   return Number(numbList[numbList.length - 1]);
 };
+
+// Using Math.max
+const highestDigitV1 = (numb) => {
+  if (typeof numb !== "number") return "Invalid input";
+  let numbList = numb.toString().split("");
+  return Math.max(...numbList);
+};
+
+// Using For
+const highestDigitV2 = (numb) => {
+  if (typeof numb !== "number") return "Invalid input";
+  let numbList = numb.toString().split("");
+  let max = numbList[0];
+  for (let i = 0; i < numbList.length; i++) {
+    if (numbList[i] > max) {
+      max = numbList[i];
+    }
+  }
+  return max;
+};
